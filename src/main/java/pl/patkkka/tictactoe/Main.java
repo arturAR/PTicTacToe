@@ -7,6 +7,8 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
+        char[] players = {'X','O'};
+
         Scanner s = new Scanner(System.in);
         System.out.println("Who goes first? (X or O)");
         String input = s.nextLine();
