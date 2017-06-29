@@ -16,7 +16,7 @@ public class Main {
 
         //creating board
         //TODO - configurable dimensions
-        char [][] board = new char[3][3];
+        char [][] board = new char[4][4];
 
         System.out.println("Please insert row and column values, " +
                 "where you want to put your character (separated by space) and press Enter");
