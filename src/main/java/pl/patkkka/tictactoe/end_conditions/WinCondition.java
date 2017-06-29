@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public abstract class WinCondition {
 
     public WinCondition() {
+
     }
 
     public abstract boolean checkCondition(char currentChar, Board board);

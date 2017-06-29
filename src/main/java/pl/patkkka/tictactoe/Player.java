@@ -12,5 +12,8 @@ public class Player {
         this.score = 0;
     }
 
-
+    //how to handle without it?!
+    public String getName() {
+        return name;
+    }
 }

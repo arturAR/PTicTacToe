@@ -4,8 +4,8 @@ import pl.patkkka.tictactoe.config.PlayerCharacters;
 import pl.patkkka.tictactoe.exceptions.IllegalMoveException;
 import pl.patkkka.tictactoe.exceptions.PositionOccupiedException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by patrycja on 29.06.17.
@@ -64,6 +64,15 @@ public class Board {
             return;
         }
         throw new IllegalMoveException("This move is out of board");
+    }
+
+    public List<Integer> getFieldsByChar(String character) {
+        return this.board.entrySet()
+                .stream()
+                .filter(entry -> Objects.equals(entry.getValue(), character))
+                .map(Map.Entry::getKey)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
 }
