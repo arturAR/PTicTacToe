@@ -13,8 +13,12 @@ public class UserIO {
         System.out.println("Who goes first? (X or O)");
     }
 
-    public static void getFirstPlayer(){
+    //should give String or Player?
+    public static String getFirstPlayer(){
         askAboutFirstPlayer();
         String firstPlayer = scanner.nextLine().trim().toUpperCase();
+        return firstPlayer;
+
     }
+
 }
