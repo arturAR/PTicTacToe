@@ -56,13 +56,13 @@ public class Board {
         board.put(position,character);
     }
 
-    public void checkIfPositionIsEmpty(int position) throws PositionOccupiedException {
+    private void checkIfPositionIsEmpty(int position) throws PositionOccupiedException {
         if(PlayerCharacters.CHARS.contains(board.get(position))){
             throw new PositionOccupiedException("This position is occupied");
         }
     }
 
-    public void checkIfMoveIsLegal(int position) throws IllegalMoveException {
+    private void checkIfMoveIsLegal(int position) throws IllegalMoveException {
         if(board.containsKey(position)){
             return;
         }

@@ -40,6 +40,7 @@ public class Match {
                     System.out.println("Match finished!" +
                                     '\n' + "The winner is " + players.getCurrentPlayerName());
                     break;
+
                 }
                 //check match draw
                 if(drawCondition.checkIfDrawConditionMet(b)){

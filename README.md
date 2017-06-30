@@ -41,4 +41,25 @@ When board is full and there is no winner - there is a draw.
     c. Change the way of running the game (jar?)
     d. Implement bi-lingual mode(.properties?)
     e. Move all User input/output action to UserIO class???
+    f. Remove BoardCharacters class
+    g. ALL TESTSSS!!! :O
+    h. Remove Players map implementation remaining
+    i. Implement toString() method in Board class
     ... + all requirements which aren't fulfilled (form the list above)
+
+# For review & questions & doubts
+    1. Exceptions handling approach - for now only checkIfPositionIsEmpty() and checkIfMoveIsLegal() methods
+        in Board class are throwing exceptions, then all called objects pass them to callers
+        and exceptions are handled in playMatch() in Match class.
+    2. UserIO approach - is it good idea to place all user interaction to separate class
+        (UserIO - not used for this moment) and how to handle it? Create UserIO object in Game constructor and then
+        pass it to every object which should use it?)
+    3. Any tip to make possible to exit game in any moment (not only after each match) in concise way?
+    4. Should configPlayers(), configBoard() in Game class be separated classes?
+    5. Is getFieldsByChar() method in Board class good starting point to check winning conditions
+        or should I change direction? I suppose I should change...
+    6. How to avoid getName() and getCharacter() methods in Player class...?
+        and getCurrentPlayerName() and getCurrentPlayerChar() in Players class?
+        It's needed to create proper user instructions.
+    7. Is Players class good place for givePointsForDraw() and givePointsForWinner() methods?
+    8. Is packages organization done in proper way?...
