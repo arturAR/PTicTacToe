@@ -1,7 +1,5 @@
 package pl.patkkka.tictactoe;
 
-import java.util.Scanner;
-
 /**
  * Created by patrycja on 28.06.17.
  */
@@ -11,5 +9,6 @@ public class Main {
 
         game.configPlayers();
         game.configBoard();
+        game.playMatch();
     }
 }

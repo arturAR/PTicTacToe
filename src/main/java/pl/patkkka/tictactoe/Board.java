@@ -4,7 +4,10 @@ import pl.patkkka.tictactoe.config.PlayerCharacters;
 import pl.patkkka.tictactoe.exceptions.IllegalMoveException;
 import pl.patkkka.tictactoe.exceptions.PositionOccupiedException;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -73,6 +76,17 @@ public class Board {
                 .map(Map.Entry::getKey)
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    public boolean checkIfBoardFull(){
+        for (String field: board.values()){
+            if(PlayerCharacters.CHARS.contains(field)){
+                continue;
+            }
+            //other character than player char
+            return false;
+        }
+        return true;
     }
 
 }
