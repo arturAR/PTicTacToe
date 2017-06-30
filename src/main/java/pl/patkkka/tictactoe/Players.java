@@ -10,24 +10,16 @@ import java.util.List;
  * Created by patrycja on 29.06.17.
  */
 public class Players {
-    // map idea was to store characters not inside Player object...
-//    Map<String,Player> playersWithChars = new HashMap<>();
+
     List<Player> players = new ArrayList<>();
     Player currentPlayer;
 
     public Players() {
     }
 
-
-
     public void addPlayer (Player player){
         players.add(player);
     }
-
-    // this was implementation for map
-  //  public void setFirstPlayer (String character){
-//        this.currentPlayer = this.players.get(character);
-//    }
 
     public void setFirstPlayer (String character){
         for (Player player: players){
@@ -43,23 +35,10 @@ public class Players {
         b.addMove(field,getCurrentPlayerChar());
     }
 
-    //how to handle without it!?
     public String getCurrentPlayerName(){
         return currentPlayer.getName();
     }
 
-    //this was implementation with map
-//    public String getCurrentPlayerChar(){
-//        for (Map.Entry<String,Player> e : this.players.entrySet()){
-//            if (currentPlayer.equals(e.getValue())){
-//                return e.getKey();
-//            }
-//        }
-//        //???
-//        return null;
-//    }
-
-    //how to handle without it!?
     public String getCurrentPlayerChar(){
         return currentPlayer.getCharacter();
     }
@@ -82,4 +61,5 @@ public class Players {
             this.currentPlayer = this.players.get(currentPlayerIndex + 1);
         }
     }
+
 }

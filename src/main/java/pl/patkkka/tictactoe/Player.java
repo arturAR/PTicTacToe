@@ -14,7 +14,6 @@ public class Player {
         this.score = 0;
     }
 
-    //how to handle without it?!
     public String getName() {
         return name;
     }
@@ -22,8 +21,12 @@ public class Player {
     public void addPoints(int points){
         this.score += points;
     }
-    //how to handle without it?!
+
     public String getCharacter() {
         return character;
+    }
+
+    public void move(Board b){
+
     }
 }
