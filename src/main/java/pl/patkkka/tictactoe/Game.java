@@ -43,7 +43,7 @@ public class Game {
         this.board = new Board(rows,cols);
     }
 
-    
+
 
     public void playMatch(){
         Match match = new Match (this.players);

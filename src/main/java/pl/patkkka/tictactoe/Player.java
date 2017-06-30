@@ -19,8 +19,8 @@ public class Player {
         return name;
     }
 
-    public void addPoint(){
-        this.score++;
+    public void addPoints(int points){
+        this.score += points;
     }
     //how to handle without it?!
     public String getCharacter() {

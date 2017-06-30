@@ -64,8 +64,14 @@ public class Players {
         return currentPlayer.getCharacter();
     }
 
-    public void addPointToCurrentPlayer(){
-        this.currentPlayer.addPoint();
+    public void givePointsForWinner(int points){
+        this.currentPlayer.addPoints(points);
+    }
+
+    public void givePointsForDraw(int points) {
+        for (Player p: this.players){
+            p.addPoints(points);
+        }
     }
 
     public void nextPlayer(){

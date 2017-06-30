@@ -14,6 +14,8 @@ public class Match {
     private Players players = new Players();
     private WinConditions winConditions = new WinConditions();
     private DrawCondition drawCondition = new DrawCondition();
+    final private int POINTS_FOR_DRAW = 1;
+    final private int POINTS_FOR_WIN = 3;
 
 
     private static Scanner s = new Scanner(System.in);
@@ -34,13 +36,14 @@ public class Match {
                 players.currentPlayerMove(b,field);
                 //check match won
                 if(winConditions.checkIfAnyWinConditionMet(b)){
-                    players.addPointToCurrentPlayer();
+                    players.givePointsForWinner(POINTS_FOR_WIN);
                     System.out.println("Match finished!" +
                                     '\n' + "The winner is " + players.getCurrentPlayerName());
                     break;
                 }
                 //check match draw
                 if(drawCondition.checkIfDrawConditionMet(b)){
+                    players.givePointsForDraw(POINTS_FOR_DRAW);
                     System.out.println("Match draw! Board is full. There is no winner.");
                     break;
                 }
