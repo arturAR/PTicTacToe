@@ -7,6 +7,10 @@
 
 # User-specific stuff:
 .idea/*
+.classpath
+.project
+.settings/*
+target/*
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/

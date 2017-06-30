@@ -2,7 +2,9 @@ package pl.patkkka;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pl.patkkka.tictactoe.Board;
+
+import com.javaAcademy.tictactoe.model.Board;
+
 import pl.patkkka.tictactoe.exceptions.IllegalMoveException;
 import pl.patkkka.tictactoe.exceptions.PositionOccupiedException;
 
