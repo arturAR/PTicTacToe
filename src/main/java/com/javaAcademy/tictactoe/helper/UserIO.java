@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe;
+package com.javaAcademy.tictactoe.helper;
 
 import java.io.PrintStream;
 import java.util.Scanner;

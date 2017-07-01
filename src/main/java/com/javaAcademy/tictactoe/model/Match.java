@@ -1,10 +1,10 @@
 package com.javaAcademy.tictactoe.model;
 
-import com.javaAcademy.tictactoe.UserIO;
 import com.javaAcademy.tictactoe.end_conditions.DrawCondition;
 import com.javaAcademy.tictactoe.end_conditions.WinConditions;
 import com.javaAcademy.tictactoe.exceptions.IllegalMoveException;
 import com.javaAcademy.tictactoe.exceptions.PositionOccupiedException;
+import com.javaAcademy.tictactoe.helper.UserIO;
 
 /**
  * Created by patrycja on 30.06.17.
@@ -40,12 +40,12 @@ public class Match {
                 }
                 //check match draw
                 if(drawCondition.checkIfDrawConditionMet(b)){
-                    players.givePointsForDraw(POINTS_FOR_DRAW);
+                    //players.givePointsForDraw(POINTS_FOR_DRAW);
                     UserIO.showUserMessage("Match draw! Board is full. There is no winner.");
                     break;
                 }
                 //next player
-                players.nextPlayer();
+                //players.nextPlayer();
 
             } catch (IllegalMoveException e) {
                 UserIO.showUserMessage("This field is out of board! Please select another");

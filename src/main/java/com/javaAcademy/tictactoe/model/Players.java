@@ -23,7 +23,7 @@ public class Players {
 
     public void setFirstPlayer (String character){
         for (Player player: players){
-            if(player.getCharacter().equals(character)){
+            if(player.toString().equals(character)){
                 this.currentPlayer = player;
                 break;
             }
@@ -36,30 +36,15 @@ public class Players {
     }
 
     public String getCurrentPlayerName(){
-        return currentPlayer.getName();
+        return currentPlayer.getNick();
     }
 
     public String getCurrentPlayerChar(){
-        return currentPlayer.getCharacter();
+        return currentPlayer.toString();
     }
 
     public void givePointsForWinner(int points){
-        this.currentPlayer.addPoints(points);
-    }
-
-    public void givePointsForDraw(int points) {
-        for (Player p: this.players){
-            p.addPoints(points);
-        }
-    }
-
-    public void nextPlayer(){
-        int currentPlayerIndex = this.players.indexOf(currentPlayer);
-        if (currentPlayerIndex == this.players.size()-1){
-            this.currentPlayer = this.players.get(0);
-        } else {
-            this.currentPlayer = this.players.get(currentPlayerIndex + 1);
-        }
+        this.currentPlayer.addPoints(BattleScore.WIN);
     }
 
 }

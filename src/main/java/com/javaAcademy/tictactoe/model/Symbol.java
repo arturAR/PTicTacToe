@@ -21,5 +21,4 @@ public enum Symbol {
 		}
 		return X;
 	}
-	
 }

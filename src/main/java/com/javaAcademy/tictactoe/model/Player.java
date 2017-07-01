@@ -1,32 +1,29 @@
 package com.javaAcademy.tictactoe.model;
 
-/**
- * Created by patrycja on 29.06.17.
- */
 public class Player {
-    String name;
-    int score;
-    String character;
+	private String nick;
+	private Symbol symbol;
+	private int points;
 
-    public Player(String name, String character) {
-        this.name = name;
-        this.character = character;
-        this.score = 0;
-    }
+	public Player(String nick, Symbol symbol) {
+		this.nick = nick;
+		this.symbol = symbol;
+		points = 0;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getNick() {
+		return nick;
+	}
 
-    public void addPoints(int points){
-        this.score += points;
-    }
-
-    public String getCharacter() {
-        return character;
-    }
-
-    public void move(Board b){
-
-    }
+	public Symbol getSymbol() {
+		return symbol;
+	}
+	
+	public void addPoints(BattleScore battleScore) {
+		points += battleScore.getPointsForResult();
+	}
+	
+	public int getAmountOfPoints() {
+		return points;
+	}
 }
