@@ -4,7 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.javaAcademy.tictactoe.model.Board;
-
+import com.javaAcademy.tictactoe.model.Symbol;
 import com.javaAcademy.tictactoe.exceptions.IllegalMoveException;
 import com.javaAcademy.tictactoe.exceptions.PositionOccupiedException;
 
@@ -42,13 +42,13 @@ public class BoardTest {
 
     @Test(expectedExceptions = IllegalMoveException.class)
     public void addIllegalMoveTest() throws IllegalMoveException, PositionOccupiedException {
-        b.addMove(13,"X");
+        b.addMove(13, Symbol.X);
     }
 
     @Test(expectedExceptions = PositionOccupiedException.class)
     public void addMoveToOccupiedFieldTest() throws IllegalMoveException, PositionOccupiedException {
-        b.addMove(4,"X");
-        b.addMove(4,"O");
+        b.addMove(4, Symbol.X);
+        b.addMove(4, Symbol.O);
     }
 
 }

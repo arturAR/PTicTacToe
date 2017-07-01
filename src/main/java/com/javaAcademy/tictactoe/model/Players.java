@@ -32,7 +32,7 @@ public class Players {
 
     public void currentPlayerMove(Board b, int field) throws IllegalMoveException, PositionOccupiedException {
 
-        b.addMove(field,getCurrentPlayerChar());
+        //b.addMove(field,getCurrentPlayerChar());
     }
 
     public String getCurrentPlayerName(){

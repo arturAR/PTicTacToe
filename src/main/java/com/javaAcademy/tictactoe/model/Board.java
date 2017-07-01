@@ -14,17 +14,10 @@ import java.util.stream.Collectors;
  * Created by patrycja on 29.06.17.
  */
 public class Board {
-    private Map<Integer,String> board = new HashMap<Integer, String>();
+    private Map<Integer, Symbol> board = new HashMap<Integer, Symbol>();
     private int dimX;
     private int dimY;
     private int fieldsNo;
-
-    public Board() {
-        this.dimX = 3;
-        this.dimY = 3;
-        this.fieldsNo = dimX * dimY;
-        clearBoard();
-    }
 
     public Board(int dimX, int dimY) {
         this.dimX = dimX;
@@ -34,15 +27,12 @@ public class Board {
     }
 
     private void clearBoard() {
-        board.clear();
-        for (int i = 0; i<fieldsNo; i++){
-            board.put(i,String.valueOf(i));
-        }
+
     }
 
     public void printBoard() {
-        for (int i = 0; i< dimX; i++){
-            for (int j = 0; j< dimY; j++){
+        for (int i = 0; i < dimX; i++){
+            for (int j = 0; j < dimY; j++){
                 System.out.print(board.get(i*dimY + j));
                 System.out.print('\t');
             }
@@ -50,10 +40,10 @@ public class Board {
         }
     }
 
-    public void addMove(int position, String character) throws IllegalMoveException, PositionOccupiedException {
+    public void addMove(int position, Symbol character) throws IllegalMoveException, PositionOccupiedException {
         checkIfMoveIsLegal(position);
         checkIfPositionIsEmpty(position);
-        board.put(position,character);
+        board.put(position, character);
     }
 
     private void checkIfPositionIsEmpty(int position) throws PositionOccupiedException {
@@ -79,7 +69,7 @@ public class Board {
     }
 
     public boolean checkIfBoardFull(){
-        for (String field: board.values()){
+        for (Symbol field: board.values()){
             if(PlayerCharacters.CHARS.contains(field)){
                 continue;
             }
