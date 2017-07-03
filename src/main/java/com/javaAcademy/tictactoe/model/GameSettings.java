@@ -1,6 +1,5 @@
 package com.javaAcademy.tictactoe.model;
 
-import java.util.Locale;
 
 public class GameSettings {
 	
@@ -8,17 +7,15 @@ public class GameSettings {
 	private int winningCondition;
 	private int xArenaDimension;
 	private int yArenaDimension;
-	private String language;
 	private int amountOfBattles;
 	
 	public GameSettings(int whoStarts, int winningCondition, int xArenaDimension, 
-			int yArenaDimension, String language, int amountOfBattles) {
+			int yArenaDimension, int amountOfBattles) {
 		super();
 		this.whoStarts = whoStarts;
 		this.winningCondition = winningCondition;
 		this.xArenaDimension = xArenaDimension;
 		this.yArenaDimension = yArenaDimension;
-		this.language = language;
 		this.amountOfBattles = amountOfBattles;
 	}
 
@@ -39,10 +36,6 @@ public class GameSettings {
 
 	public int getYArenaDimension() {
 		return yArenaDimension;
-	}
-
-	public String getLanguage() {
-		return language;
 	}
 	
 	public int getAmountOfBattles() {

@@ -2,7 +2,7 @@ package com.javaAcademy.tictactoe;
 
 import org.testng.annotations.Test;
 
-import com.javaAcademy.tictactoe.helper.MessageResolver;
+import com.javaAcademy.tictactoe.helper.IOResolver;
 
 import static org.testng.Assert.*;
 
@@ -29,7 +29,7 @@ public class MessagesTest {
 	public void testInternationalizationFromMessageResolver() {
 		Locale defaultLocale = new Locale(language, country);
 		
-		MessageResolver msgResolver = MessageResolver.msgResolverInstance(defaultLocale);
+		IOResolver msgResolver = IOResolver.createIOResolver(defaultLocale);
 		String key = "hello";
 		
 		assertEquals("Hello my friend!.", msgResolver.getMsgByKey(key));

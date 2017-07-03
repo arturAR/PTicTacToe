@@ -20,4 +20,8 @@ public class Game {
 		} while (cnt < settings.getAmountOfBattles());
 		statistics.summarizeGame();
     }
+    
+    public static Game startGame(GameSettings settings, GameStatistics statistics) {
+		return new Game(settings, statistics);
+	}
 }

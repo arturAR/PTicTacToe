@@ -1,13 +1,12 @@
 package com.javaAcademy.tictactoe.businessLogic;
 
-import com.javaAcademy.tictactoe.model.Direction;
+import com.javaAcademy.tictactoe.businessLogic.directions.AscendingDirection;
+import com.javaAcademy.tictactoe.businessLogic.directions.DescendingDirection;
+import com.javaAcademy.tictactoe.businessLogic.directions.HoryzontalDirection;
+import com.javaAcademy.tictactoe.businessLogic.directions.VerticalDirection;
 import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.Point;
 import com.javaAcademy.tictactoe.model.Symbol;
-import com.javaAcademy.tictactoe.model.directions.AscendingDirection;
-import com.javaAcademy.tictactoe.model.directions.DescendingDirection;
-import com.javaAcademy.tictactoe.model.directions.HoryzontalDirection;
-import com.javaAcademy.tictactoe.model.directions.VerticalDirection;
 
 public class CheckerAlgorithm {
 	

@@ -1,6 +1,6 @@
-package com.javaAcademy.tictactoe.model.directions;
+package com.javaAcademy.tictactoe.businessLogic.directions;
 
-import com.javaAcademy.tictactoe.model.Direction;
+import com.javaAcademy.tictactoe.businessLogic.Direction;
 import com.javaAcademy.tictactoe.model.Point;
 
 public class HoryzontalDirection implements Direction{
