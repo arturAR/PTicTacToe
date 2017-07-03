@@ -3,13 +3,13 @@ package com.javaAcademy.tictactoe.model;
 
 public class GameSettings {
 	
-	private int whoStarts;
+	private String whoStarts;
 	private int winningCondition;
 	private int xArenaDimension;
 	private int yArenaDimension;
 	private int amountOfBattles;
 	
-	public GameSettings(int whoStarts, int winningCondition, int xArenaDimension, 
+	public GameSettings(String whoStarts, int winningCondition, int xArenaDimension, 
 			int yArenaDimension, int amountOfBattles) {
 		super();
 		this.whoStarts = whoStarts;
@@ -20,7 +20,7 @@ public class GameSettings {
 	}
 
 	public Symbol getWhoStarts() {
-		if(whoStarts == 1) {
+		if(whoStarts.equals("O")) {
 			return Symbol.O;
 		}
 		return Symbol.X;

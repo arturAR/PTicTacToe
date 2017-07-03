@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 import com.javaAcademy.tictactoe.helper.resolversImpl.AlgoResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.EmptyResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.IntResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
 
@@ -15,7 +14,7 @@ public class IOResolver {
 	
 	private Locale locale;
 
-	private DataResolver dataResolver;
+	private DataResolver<?> dataResolver;
 	
 	private IOResolver(Locale locale) {
 		this.locale = locale;
@@ -26,7 +25,7 @@ public class IOResolver {
 		return instance;
 	}
 	
-	public static IOResolver IOresolverInstance() {
+	public static IOResolver getIOResolverInstance() {
 		return instance;
 	}
 
@@ -34,18 +33,17 @@ public class IOResolver {
 		return ResourceBundle.getBundle("Messages", locale).getString(key);
 	}
 	
-	public void resolveIO(String key) {
+	public DataResolver<?> resolveIO(String key, Object ...params) {
 		if(key.startsWith("int.size.")) {
-			dataResolver = new SizeResolver(locale);
+			dataResolver = new SizeResolver<Integer>(locale);
 		} else if (key.startsWith("int.algo.")) {
-			dataResolver = new AlgoResolver(locale);
-		} else if (key.startsWith("int.")) {
-			dataResolver = new IntResolver(locale);
+			dataResolver = new AlgoResolver<Integer>(locale);
 		} else if (key.startsWith("string.")) {
-			dataResolver = new StringResolver(locale);
+			dataResolver = new StringResolver<String>(locale);
 		} else { //key.startsWith("empty.")
-			dataResolver = new EmptyResolver(locale);
+			dataResolver = new EmptyResolver<String>(locale);
 		}
-		dataResolver.resolveIO(key);
+		dataResolver.resolveIO(key, params);
+		return dataResolver;
 	}
 }

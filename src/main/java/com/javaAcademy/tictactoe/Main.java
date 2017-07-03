@@ -6,7 +6,10 @@ import com.javaAcademy.tictactoe.model.GameStatistics;
 import java.util.Locale;
 import java.util.Scanner;
 
+import com.javaAcademy.tictactoe.exceptions.CancelGameException;
 import com.javaAcademy.tictactoe.helper.IOResolver;
+import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
+import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
 import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Symbol;
 
@@ -16,25 +19,30 @@ import com.javaAcademy.tictactoe.model.Symbol;
 public class Main {
 	
 	Scanner s = new Scanner(System.in);
-	private IOResolver messageResolver;
+	private static IOResolver ioResolver;
 	
     public static void main(String[] args) {
     	Main app = new Main();
-    	System.out.println("Please choose the language/Wybierz język: 1 - English, 2 - Polish.");
-    	final int lang = Integer.parseInt(app.s.nextLine());
-    	app.createMessageResolver(lang);
-    	GameSettings settings = app.getGameSettings();
-    	GameStatistics statistics = app.getGameStatistics();
-    	
-    	Game.startGame(settings, statistics);
+    	System.out.println("Please choose the language/Wybierz język: 1 - English, 2 - Polish. Default English.");
+    	String lang = app.s.nextLine();
+    	app.createIOResolver(lang);
+    	ioResolver = IOResolver.getIOResolverInstance();
+    	try {
+    		GameSettings settings = app.getGameSettings();
+    		GameStatistics statistics = app.getGameStatistics();
+    		
+    		Game.startGame(settings, statistics);
+    	} catch(CancelGameException e) {
+    		ioResolver.resolveIO("epty.gameEnd");
+    	}
     }
     
     private GameStatistics getGameStatistics() {
-    	System.out.println(messageResolver.getMsgByKey("string.playerONickname"));
-    	String playerOName = s.nextLine();
+    	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerONickname");
+    	String playerOName = (String) strRes.getValue();
     	
-    	System.out.println(messageResolver.getMsgByKey("string.playerXNickname"));
-    	String playerXName = s.nextLine();
+    	strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerXNickname");
+    	String playerXName = (String) strRes.getValue();
     	
         Player playerX = new Player(playerXName, Symbol.X);
         Player playerO = new Player(playerOName, Symbol.O);
@@ -43,32 +51,30 @@ public class Main {
 	}
 
 	private GameSettings getGameSettings() {
-		messageResolver = IOResolver.IOresolverInstance();
-    	System.out.println(messageResolver.getMsgByKey("empty.chosenLanguage"));
+    	ioResolver.resolveIO("empty.chosenLanguage");
     	
-    	System.out.println(messageResolver.getMsgByKey("int.xDimension"));
-    	final int xDim = Integer.parseInt(s.nextLine());
+    	SizeResolver<?> res = (SizeResolver<?>) ioResolver.resolveIO("int.size.xDimension");
+    	Integer xDim = (Integer) res.getValue();
     	
-    	System.out.println(messageResolver.getMsgByKey("int.yDimension"));
-    	final int yDim = Integer.parseInt(s.nextLine());
-    	//TODO board dimension validation
+    	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.yDimension");
+    	Integer yDim = (Integer) res.getValue();
     	
-    	System.out.println(messageResolver.getMsgByKey("int.size.winningCondition"));
-    	//TODO char series validation
-    	final int charSeriesDim = Integer.parseInt(s.nextLine());
+    	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.winningCondition");
+    	Integer charSeriesDim = (Integer) res.getValue();
     	
-    	System.out.println(messageResolver.getMsgByKey("int.whoStarts"));
-    	//TODO char validation
-    	final int whoStarts = Integer.parseInt(s.nextLine());
+    	
+    	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.whoStarts");
+    	String whoStarts = (String) strRes.getValue();
+    	System.out.println("Settings: " + xDim + "|" + yDim);
 		return new GameSettings(whoStarts, charSeriesDim, xDim, yDim, 3);
 	}
 	
-    private void createMessageResolver(int langNumber) {
+    private void createIOResolver(String langNumber) {
 		switch(langNumber) {
-			case 1:
+			case "1":
 				IOResolver.createIOResolver(new Locale("en", "EN"));
 				break;
-			case 2:
+			case "2":
 				IOResolver.createIOResolver(new Locale("pl", "PL"));
 				break;
 			default:

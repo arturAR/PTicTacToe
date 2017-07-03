@@ -7,7 +7,7 @@ The player who succeeds in placing n of their marks in a horizontal, vertical, o
 When board is full and there is no winner - there is a draw.
 
 # How to run the game
-    1. To execute: mvn exec:java -Dexec.mainClass="com.javaAcademy.OXGame.App"
+    1. To execute: mvn exec:java -Dexec.mainClass="com.javaAcademy.tictactoe.Main"
     2. To test: mvn test 
 
 # Requirements list

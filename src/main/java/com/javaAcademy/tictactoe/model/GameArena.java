@@ -42,6 +42,6 @@ public class GameArena {
 	}
 	
 	public void setSymbol(Symbol symbol, Point point) {
-    	arena[point.getX()][point.getY()] = symbol;
+    	arena[point.getY()][point.getX()] = symbol;
 	}
 }

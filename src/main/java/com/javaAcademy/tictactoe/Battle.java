@@ -1,9 +1,8 @@
 package com.javaAcademy.tictactoe;
 
-import java.util.Scanner;
-
 import com.javaAcademy.tictactoe.businessLogic.CheckerAlgorithm;
 import com.javaAcademy.tictactoe.helper.IOResolver;
+import com.javaAcademy.tictactoe.helper.resolversImpl.AlgoResolver;
 import com.javaAcademy.tictactoe.model.BattleResult;
 import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.GameSettings;
@@ -13,14 +12,13 @@ import com.javaAcademy.tictactoe.view.TablePrinter;
 
 
 public class Battle {
-	
-	private static Scanner s;
+
 	private GameSettings settings;
-	private IOResolver msgResolver;
+	private IOResolver ioResolver;
 
 	public Battle(GameSettings settings) {
 		this.settings = settings;
-		msgResolver = IOResolver.IOresolverInstance();
+		ioResolver = IOResolver.getIOResolverInstance();
 	}
 
 	public BattleResult doBattle() {
@@ -38,13 +36,13 @@ public class Battle {
 			}
 			someoneWin = doMove(symbol, gameArena, checker);
 			if(someoneWin) {
-				System.out.println(msgResolver.getMsgByKey("empty.battleWinner") + symbol.toString());
+				ioResolver.resolveIO("empty.battleWinner", symbol.toString());
 				return new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
 			}
 	    	cnt++;
 	    	TablePrinter.printArena(gameArena); 
 		} while(cnt < gameArena.getAmountOfSymbols() && !someoneWin);
-		System.out.println(msgResolver.getMsgByKey("empty.battleNoWinner"));
+		ioResolver.resolveIO("empty.battleNoWinner");
 		return new BattleResult(Symbol.O, Symbol.X, false);
 	}
 	
@@ -54,22 +52,20 @@ public class Battle {
 	}
 
 	private Point isEmpty(GameArena arena, Symbol symbol) {
-		s = new Scanner(System.in);
-		System.out.println(msgResolver.getMsgByKey("empty.whoTurn.first") + symbol + msgResolver.getMsgByKey("empty.whoTurn.second"));
+		ioResolver.resolveIO("empty.whoTurn.first", symbol);
 		
-		System.out.println(msgResolver.getMsgByKey("int.algo.xCoord"));
-    	final int yDim = Integer.parseInt(s.nextLine());
+		AlgoResolver<?> algoRes = (AlgoResolver<?>) ioResolver.resolveIO("int.algo.xCoord", "X", arena.getXDimension());
+    	Integer xDim = (Integer) algoRes.getValue();
     	
-    	System.out.println(msgResolver.getMsgByKey("int.algo.yCoord"));
-    	final int xDim = Integer.parseInt(s.nextLine());
+    	algoRes = (AlgoResolver<?>) ioResolver.resolveIO("int.algo.yCoord", "Y", arena.getYDimension());
+    	Integer yDim = (Integer) algoRes.getValue();
     	
-    	
-    	System.out.println(msgResolver.getMsgByKey("empty.chosenCoords") + xDim+"|"+yDim);
+    	ioResolver.resolveIO("empty.chosenCoords", xDim + "|" + yDim);
 		
-		if((arena.getArena()[xDim][yDim]).equals(Symbol.EMPTY)) {
+		if((arena.getArena()[yDim][xDim]).equals(Symbol.EMPTY)) {
 			return new Point(xDim,yDim);
 		}
-		System.out.println(msgResolver.getMsgByKey("empty.pointOccupied"));
+		ioResolver.resolveIO("empty.pointOccupied");
 		return isEmpty(arena, symbol);
 	}
 	

@@ -8,12 +8,12 @@ import com.javaAcademy.tictactoe.helper.IOResolver;
 public class GameStatistics {
 	
 	private Map<Symbol, Player> players = new HashMap<>();
-	private IOResolver msgResolver;
+	private IOResolver ioResolver;
 	
 	public GameStatistics(Player xPlayer, Player oPlayer) {
 		players.put(xPlayer.getSymbol(), xPlayer);
 		players.put(oPlayer.getSymbol(), oPlayer);
-		msgResolver = IOResolver.IOresolverInstance();
+		ioResolver = IOResolver.getIOResolverInstance();
 	}
 	
 	private void updatePlayerStatisticAfterBattle(Symbol playerSymbol, BattleScore score) {
@@ -31,21 +31,21 @@ public class GameStatistics {
 	}
 
 	public void showStatistics() {
-		System.out.println(msgResolver.getMsgByKey("empty.showStatistic.head"));
-		System.out.println(msgResolver.getMsgByKey("empty.showStatistic.playerO") + players.get(Symbol.O).getAmountOfPoints());
-		System.out.println(msgResolver.getMsgByKey("empty.showStatistic.playerX") + players.get(Symbol.X).getAmountOfPoints());
+		ioResolver.resolveIO("empty.showStatistic.head");
+		ioResolver.resolveIO("empty.showStatistic.playerO", players.get(Symbol.O).getAmountOfPoints());
+		ioResolver.resolveIO("empty.showStatistic.playerX", players.get(Symbol.X).getAmountOfPoints());
 	}
 
 	public void summarizeGame() {
-		System.out.println(msgResolver.getMsgByKey("empty.matchResult.head"));
+		ioResolver.resolveIO("empty.matchResult.head");
 		int pointsPlayerX = players.get(Symbol.X).getAmountOfPoints();
 		int pointsPlayerO = players.get(Symbol.O).getAmountOfPoints();
 		if(pointsPlayerO > pointsPlayerX) {
-			System.out.println(msgResolver.getMsgByKey("empty.gameResult.playerOwin"));
+			ioResolver.resolveIO("empty.matchResult.head");
 		} else if(pointsPlayerX > pointsPlayerO) {
-			System.out.println(msgResolver.getMsgByKey("empty.gameResult.playerXWin"));
+			ioResolver.resolveIO("empty.gameResult.playerOwin");
 		} else {
-			System.out.println(msgResolver.getMsgByKey("empty.gameResult.draw"));
+			ioResolver.resolveIO("empty.gameResult.draw");
 		}
 	}
 }
