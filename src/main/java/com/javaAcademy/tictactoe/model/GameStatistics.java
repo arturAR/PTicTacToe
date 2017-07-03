@@ -32,8 +32,8 @@ public class GameStatistics {
 
 	public void showStatistics() {
 		ioResolver.resolveIO("empty.showStatistic.head");
-		ioResolver.resolveIO("empty.showStatistic.playerO", players.get(Symbol.O).getAmountOfPoints());
-		ioResolver.resolveIO("empty.showStatistic.playerX", players.get(Symbol.X).getAmountOfPoints());
+		ioResolver.resolveIO("empty.showStatistic.player", players.get(Symbol.O).getNick(), players.get(Symbol.O).getAmountOfPoints());
+		ioResolver.resolveIO("empty.showStatistic.player", players.get(Symbol.X).getNick(), players.get(Symbol.X).getAmountOfPoints());
 	}
 
 	public void summarizeGame() {

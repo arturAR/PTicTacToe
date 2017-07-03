@@ -62,10 +62,9 @@ public class Main {
     	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.winningCondition");
     	Integer charSeriesDim = (Integer) res.getValue();
     	
-    	
     	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.whoStarts");
     	String whoStarts = (String) strRes.getValue();
-    	System.out.println("Settings: " + xDim + "|" + yDim);
+    	
 		return new GameSettings(whoStarts, charSeriesDim, xDim, yDim, 3);
 	}
 	

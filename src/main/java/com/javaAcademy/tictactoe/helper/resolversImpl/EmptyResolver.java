@@ -23,7 +23,10 @@ public class EmptyResolver<T> extends DataResolver<T> {
 	
 	private void showMessageWithParam(String key, Object[] params) {
 		String message = ResourceBundle.getBundle("Messages", locale).getString(key);
-		System.out.println(message + " " + params[0]);
+		for(Object param: params) {
+			message += param;
+		}
+		System.out.println(message);
 	}
 
 	@Override
