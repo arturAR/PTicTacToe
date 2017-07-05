@@ -59,7 +59,7 @@ public class Main {
     	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.yDimension");
     	Integer yDim = (Integer) res.getValue();
     	
-    	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.winningCondition");
+    	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.winningCondition", xDim, yDim);
     	Integer charSeriesDim = (Integer) res.getValue();
     	
     	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.whoStarts");

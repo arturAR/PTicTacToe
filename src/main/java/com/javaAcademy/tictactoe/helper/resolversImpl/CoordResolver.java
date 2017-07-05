@@ -8,10 +8,10 @@ import com.javaAcademy.tictactoe.helper.DataParser;
 import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserIO;
 
-public class AlgoResolver<T> extends DataResolver<T> {
+public class CoordResolver<T> extends DataResolver<T> {
 
 
-	public AlgoResolver(Locale locale) {
+	public CoordResolver(Locale locale) {
 		super(locale);
 	}
 
@@ -35,17 +35,15 @@ public class AlgoResolver<T> extends DataResolver<T> {
 	}
 
 	private void checkData(int coord, Object[] params) {
+		System.out.println("Sprawdzam coord: " + params[0] + "  " + params[1]);
 		Integer dimension = (Integer) params[1];
-		if(params[0].equals("O")) {
-			checkCoord(dimension, coord);
-		} else {
-			checkCoord(dimension, coord);
-		}
+		checkCoord(dimension, coord);
 	}
 	
 	@SuppressWarnings("unchecked")
 	private void checkCoord(int dimension, Integer data) {
-		if(data <= dimension && data > 0) {
+		System.out.println(dimension + "  i data: " + data);
+		if(data < dimension && data > 0) {
 			value = (T) data;
 		} else {
 			throw new IllegalMoveException();

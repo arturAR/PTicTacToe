@@ -51,6 +51,7 @@ public class SizeResolver<T> extends DataResolver<T> {
 				}
 			}
 		}
+		
 		if(size < 3) {
 			throw new DigitLessThanThreeException("Digit less than 3!");
 		} else if(size > smallestDim && params.length != 0) {

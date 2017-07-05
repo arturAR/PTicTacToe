@@ -3,7 +3,7 @@ package com.javaAcademy.tictactoe.helper;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.javaAcademy.tictactoe.helper.resolversImpl.AlgoResolver;
+import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.EmptyResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
@@ -36,8 +36,8 @@ public class IOResolver {
 	public DataResolver<?> resolveIO(String key, Object ...params) {
 		if(key.startsWith("int.size.")) {
 			dataResolver = new SizeResolver<Integer>(locale);
-		} else if (key.startsWith("int.algo.")) {
-			dataResolver = new AlgoResolver<Integer>(locale);
+		} else if (key.startsWith("int.coord.")) {
+			dataResolver = new CoordResolver<Integer>(locale);
 		} else if (key.startsWith("string.")) {
 			dataResolver = new StringResolver<String>(locale);
 		} else { //key.startsWith("empty.")

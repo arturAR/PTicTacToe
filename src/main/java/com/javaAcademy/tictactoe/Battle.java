@@ -2,7 +2,7 @@ package com.javaAcademy.tictactoe;
 
 import com.javaAcademy.tictactoe.businessLogic.CheckerAlgorithm;
 import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.AlgoResolver;
+import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
 import com.javaAcademy.tictactoe.model.BattleResult;
 import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.GameSettings;
@@ -54,16 +54,16 @@ public class Battle {
 	private Point isEmpty(GameArena arena, Symbol symbol) {
 		ioResolver.resolveIO("empty.whoTurn.first", symbol);
 		
-		AlgoResolver<?> algoRes = (AlgoResolver<?>) ioResolver.resolveIO("int.algo.xCoord", "X", arena.getXDimension());
+		CoordResolver<?> algoRes = (CoordResolver<?>) ioResolver.resolveIO("int.coord.xCoord", "X", arena.getXDimension());
     	Integer xDim = (Integer) algoRes.getValue();
     	
-    	algoRes = (AlgoResolver<?>) ioResolver.resolveIO("int.algo.yCoord", "Y", arena.getYDimension());
+    	algoRes = (CoordResolver<?>) ioResolver.resolveIO("int.coord.yCoord", "Y", arena.getYDimension());
     	Integer yDim = (Integer) algoRes.getValue();
     	
     	ioResolver.resolveIO("empty.chosenCoords", xDim + "|" + yDim);
 		
-		if((arena.getArena()[yDim][xDim]).equals(Symbol.EMPTY)) {
-			return new Point(xDim,yDim);
+		if((arena.getArena()[xDim][yDim]).equals(Symbol.EMPTY)) {
+			return new Point(xDim, yDim);
 		}
 		ioResolver.resolveIO("empty.pointOccupied");
 		return isEmpty(arena, symbol);

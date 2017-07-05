@@ -22,7 +22,7 @@ public class GameArena {
 	}
 
 	public static GameArena getGameArena(int x , int y) {
-		return new GameArena(x,y);
+		return new GameArena(x, y);
 	}
 	
 	public Symbol[][] getArena() {
@@ -42,6 +42,6 @@ public class GameArena {
 	}
 	
 	public void setSymbol(Symbol symbol, Point point) {
-    	arena[point.getY()][point.getX()] = symbol;
+    	arena[point.getX()][point.getY()] = symbol;
 	}
 }

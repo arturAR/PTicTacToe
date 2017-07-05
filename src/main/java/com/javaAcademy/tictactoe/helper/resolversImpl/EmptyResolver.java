@@ -24,7 +24,7 @@ public class EmptyResolver<T> extends DataResolver<T> {
 	private void showMessageWithParam(String key, Object[] params) {
 		String message = ResourceBundle.getBundle("Messages", locale).getString(key);
 		for(Object param: params) {
-			message += param;
+			message += " " + param;
 		}
 		System.out.println(message);
 	}
