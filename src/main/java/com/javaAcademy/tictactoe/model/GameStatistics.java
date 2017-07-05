@@ -41,9 +41,9 @@ public class GameStatistics {
 		int pointsPlayerX = players.get(Symbol.X).getAmountOfPoints();
 		int pointsPlayerO = players.get(Symbol.O).getAmountOfPoints();
 		if(pointsPlayerO > pointsPlayerX) {
-			ioResolver.resolveIO("empty.matchResult.head");
+			ioResolver.resolveIO("empty.gameResult.playerOWin");
 		} else if(pointsPlayerX > pointsPlayerO) {
-			ioResolver.resolveIO("empty.gameResult.playerOwin");
+			ioResolver.resolveIO("empty.gameResult.playerXWin");
 		} else {
 			ioResolver.resolveIO("empty.gameResult.draw");
 		}

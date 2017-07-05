@@ -2,7 +2,6 @@ package com.javaAcademy.tictactoe.helper.resolversImpl;
 
 import java.util.Locale;
 
-import com.javaAcademy.tictactoe.exceptions.CancelGameException;
 import com.javaAcademy.tictactoe.exceptions.DigitLessThanThreeException;
 import com.javaAcademy.tictactoe.exceptions.WinningConditionTooBigException;
 import com.javaAcademy.tictactoe.helper.DataParser;
@@ -21,9 +20,9 @@ public class SizeResolver<T> extends DataResolver<T> {
 		try {
 			showMessage(key);
 			String data = UserIO.getUserInput();
-			if(isCancelGame(data)) {
-				throw new CancelGameException("Cancel game");
-			}
+			
+			checkIfCancelGame(data); 
+			
 			int size = DataParser.parseToInt(data);
 			checkData(size, params);
 		} catch (WinningConditionTooBigException e) {

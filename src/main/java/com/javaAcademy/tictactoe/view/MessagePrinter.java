@@ -6,7 +6,7 @@ public class MessagePrinter {
 		System.out.println(message);
 	}
 	
-	public static void printMessage(String message) {
-		
+	public static void printMessageSErr(String message) {
+		System.err.println(message);
 	}
 }

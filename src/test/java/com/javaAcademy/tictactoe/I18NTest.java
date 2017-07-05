@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 
 @Test
-public class MessagesTest {
+public class I18NTest {
 	
 	private String language = new String("en");
     private String country = new String("EN");

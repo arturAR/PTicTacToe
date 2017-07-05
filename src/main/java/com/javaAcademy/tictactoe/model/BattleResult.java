@@ -15,10 +15,6 @@ public class BattleResult {
 	public boolean isWinner() {
 		return someoneWin;
 	}
-	
-	public boolean isSomeoneWin() {
-		return someoneWin;
-	}
 
 	public Symbol getLoser() {
 		return loser;
