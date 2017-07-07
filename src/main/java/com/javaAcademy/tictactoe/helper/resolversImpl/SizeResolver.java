@@ -6,20 +6,20 @@ import com.javaAcademy.tictactoe.exceptions.DigitLessThanThreeException;
 import com.javaAcademy.tictactoe.exceptions.WinningConditionTooBigException;
 import com.javaAcademy.tictactoe.helper.DataParser;
 import com.javaAcademy.tictactoe.helper.DataResolver;
-import com.javaAcademy.tictactoe.helper.UserIO;
+import com.javaAcademy.tictactoe.helper.UserInput;
+
 
 public class SizeResolver<T> extends DataResolver<T> {
 
 
-	public SizeResolver(Locale locale) {
-		super(locale);
+	public SizeResolver(Locale locale, UserInput userInput) {
+		super(locale, userInput);
 	}
-
 	@Override
 	public void resolveIO(String key, Object ...params) {
 		try {
 			showMessage(key);
-			String data = UserIO.getUserInput();
+			String data = userInput.getUserInput();
 			
 			checkIfCancelGame(data); 
 			

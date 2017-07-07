@@ -4,13 +4,14 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.javaAcademy.tictactoe.helper.DataResolver;
+import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.view.MessagePrinter;
 
 public class EmptyResolver<T> extends DataResolver<T> {
 
 
-	public EmptyResolver(Locale locale) {
-		super(locale);
+	public EmptyResolver(Locale locale, UserInput userInput) {
+		super(locale, userInput);
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class EmptyResolver<T> extends DataResolver<T> {
 		for(Object param: params) {
 			message += " " + param;
 		}
-		MessagePrinter.printMessageSOut(message);
+		MessagePrinter.printMessageSOutLn(message);
 	}
 
 	@Override

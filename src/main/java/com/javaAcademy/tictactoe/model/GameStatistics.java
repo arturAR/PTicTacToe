@@ -48,4 +48,8 @@ public class GameStatistics {
 			ioResolver.resolveIO("empty.gameResult.draw");
 		}
 	}
+	
+	public Player getPlayerBySymbol(Symbol symbol) {
+		return players.get(symbol);
+	}
 }

@@ -13,7 +13,7 @@ public class MessagePrinterTest {
         System.setOut(new java.io.PrintStream(out));
 
         String testString = "hello world";
-        MessagePrinter.printMessageSOut(testString);
+        MessagePrinter.printMessageSOutLn(testString);
         testString = testString + "\n";
         
         assertEquals(out.toString(), testString);

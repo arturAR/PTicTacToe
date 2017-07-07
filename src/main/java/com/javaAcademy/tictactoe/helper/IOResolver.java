@@ -34,14 +34,15 @@ public class IOResolver {
 	}
 	
 	public DataResolver<?> resolveIO(String key, Object ...params) {
+		UserInput userInput = new UserInput();
 		if(key.startsWith("int.size.")) {
-			dataResolver = new SizeResolver<Integer>(locale);
+			dataResolver = new SizeResolver<Integer>(locale, userInput);
 		} else if (key.startsWith("int.coord.")) {
-			dataResolver = new CoordResolver<Integer>(locale);
+			dataResolver = new CoordResolver<Integer>(locale, userInput);
 		} else if (key.startsWith("string.")) {
-			dataResolver = new StringResolver<String>(locale);
+			dataResolver = new StringResolver<String>(locale, userInput);
 		} else { //key.startsWith("empty.")
-			dataResolver = new EmptyResolver<String>(locale);
+			dataResolver = new EmptyResolver<String>(locale, userInput);
 		}
 		dataResolver.resolveIO(key, params);
 		return dataResolver;

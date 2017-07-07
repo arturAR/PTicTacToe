@@ -4,10 +4,18 @@ public class Player {
 	private String nick;
 	private Symbol symbol;
 	private int points;
+	private Type clientServer;
 
 	public Player(String nick, Symbol symbol) {
 		this.nick = nick;
 		this.symbol = symbol;
+		points = 0;
+	}
+	
+	public Player(String nick, Symbol symbol, Type clientServer) {
+		this.nick = nick;
+		this.symbol = symbol;
+		this.clientServer = clientServer;
 		points = 0;
 	}
 
@@ -25,5 +33,9 @@ public class Player {
 	
 	public int getAmountOfPoints() {
 		return points;
+	}
+
+	public Type getClientOrServer() {
+		return clientServer;
 	}
 }

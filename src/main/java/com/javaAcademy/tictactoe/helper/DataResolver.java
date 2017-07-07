@@ -11,16 +11,18 @@ public abstract class DataResolver <T>{
 	protected T value;
 	
 	protected Locale locale;
+	protected UserInput userInput;
 	
-	protected DataResolver(Locale locale) {
+	protected DataResolver(Locale locale, UserInput userInput) {
 		this.locale = locale;
+		this.userInput = userInput;
 	}
 	
 	protected abstract void resolveIO(String key, Object ...params);
 	
 	protected void showMessage(String key) {
 		String message = ResourceBundle.getBundle("Messages", locale).getString(key);
-		MessagePrinter.printMessageSOut(message);
+		MessagePrinter.printMessageSOutLn(message);
 	}
 	
 	protected abstract T getValue();

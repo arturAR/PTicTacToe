@@ -1,6 +1,8 @@
 package com.javaAcademy.tictactoe;
 
+import com.javaAcademy.tictactoe.businessLogic.CheckerAlgorithm;
 import com.javaAcademy.tictactoe.model.BattleResult;
+import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.GameSettings;
 import com.javaAcademy.tictactoe.model.GameStatistics;
 
@@ -12,7 +14,10 @@ public class Game {
     public Game(GameSettings settings, GameStatistics statistics) {
     	int cnt = 0;
 		do {
-			Battle battle = new Battle(settings);
+			GameArena gameArena = GameArena.getGameArena(settings.getXArenaDimension(), settings.getYArenaDimension());
+			CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, settings.getWinningCondition());
+			
+			Battle battle = new Battle(settings, gameArena, checker, statistics);
 			BattleResult result = battle.doBattle();
 			statistics.updateStatistics(result);
 			statistics.showStatistics();

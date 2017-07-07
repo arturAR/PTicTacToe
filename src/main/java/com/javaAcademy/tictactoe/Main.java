@@ -27,6 +27,34 @@ public class Main {
     	String lang = app.s.nextLine();
     	app.createIOResolver(lang);
     	ioResolver = IOResolver.getIOResolverInstance();
+    	System.out.println("Choose 1 to play 2-players game, choose 2 to play by network.");
+    	String type = app.s.nextLine();
+    	if(type.equals("1")) {
+    		app.startNormalGame(app);
+    	} else {
+    		app.startServerGame(app);
+    	}
+    	
+    }
+    
+    private void startServerGame(Main app) {
+    	System.out.println("Choose 1 to create a game, else you will join to created game.");
+    	String type = app.s.nextLine();
+    	if(type.equals("1")) {
+	    	try {
+	    		GameSettings settings = app.getGameSettings();
+	    		GameStatistics statistics = app.getGameStatistics();
+	    		
+	    		Game.startGame(settings, statistics);
+	    	} catch(CancelGameException e) {
+	    		ioResolver.resolveIO("epty.gameEnd");
+	    	}
+    	} else {
+    		
+    	}
+	}
+
+	private void startNormalGame(Main app) {
     	try {
     		GameSettings settings = app.getGameSettings();
     		GameStatistics statistics = app.getGameStatistics();
