@@ -1,21 +1,20 @@
 package com.javaAcademy.tictactoe.helper.resolversImpl;
 
-import java.util.Locale;
-
 import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
+import com.javaAcademy.tictactoe.view.Printer;
 
 public class StringResolver<T> extends DataResolver<T> {
 
 
-	public StringResolver(Locale locale, UserInput userInput) {
-		super(locale, userInput);
+	public StringResolver(UserInput userInput, Printer printer) {
+		super(userInput, printer);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void resolveIO(String key, Object ...params) {
-		showMessage(key);
+		printer.printMessage(key);
 		String data = userInput.getUserInput();
 		
 		checkIfCancelGame(data); 

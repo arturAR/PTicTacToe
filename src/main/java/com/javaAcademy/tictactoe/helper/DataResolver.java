@@ -1,29 +1,22 @@
 package com.javaAcademy.tictactoe.helper;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
-import com.javaAcademy.tictactoe.view.MessagePrinter;
+import com.javaAcademy.tictactoe.view.Printer;
 
 public abstract class DataResolver <T>{
 	
 	protected T value;
 	
-	protected Locale locale;
 	protected UserInput userInput;
+	protected Printer printer;
 	
-	protected DataResolver(Locale locale, UserInput userInput) {
-		this.locale = locale;
+	protected DataResolver(UserInput userInput, Printer printer){
 		this.userInput = userInput;
+		this.printer = printer;
 	}
 	
 	protected abstract void resolveIO(String key, Object ...params);
-	
-	protected void showMessage(String key) {
-		String message = ResourceBundle.getBundle("Messages", locale).getString(key);
-		MessagePrinter.printMessageSOutLn(message);
-	}
 	
 	protected abstract T getValue();
 	

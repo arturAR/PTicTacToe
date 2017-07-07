@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
 import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.UserInput;
+import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
 import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
 
 public class StringResolverTest {

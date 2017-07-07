@@ -1,34 +1,23 @@
 package com.javaAcademy.tictactoe.helper.resolversImpl;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
-import com.javaAcademy.tictactoe.view.MessagePrinter;
+import com.javaAcademy.tictactoe.view.Printer;
 
 public class EmptyResolver<T> extends DataResolver<T> {
 
 
-	public EmptyResolver(Locale locale, UserInput userInput) {
-		super(locale, userInput);
+	public EmptyResolver(UserInput userInput, Printer printer) {
+		super(userInput, printer);
 	}
 
 	@Override
 	public void resolveIO(String key, Object ...params) {
 		if(params.length == 0) {
-			showMessage(key);
+			printer.printMessage(key);
 		} else {
-			showMessageWithParam(key, params);
+			printer.showMessageWithParam(key, params);
 		}
-	}
-	
-	private void showMessageWithParam(String key, Object[] params) {
-		String message = ResourceBundle.getBundle("Messages", locale).getString(key);
-		for(Object param: params) {
-			message += " " + param;
-		}
-		MessagePrinter.printMessageSOutLn(message);
 	}
 
 	@Override

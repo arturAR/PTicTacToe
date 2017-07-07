@@ -5,7 +5,7 @@ import java.io.ByteArrayInputStream;
 import static org.testng.Assert.*;
 import org.testng.annotations.*;
 
-import com.javaAcademy.tictactoe.helper.UserInput;
+import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
 
 public class IOTest {
 
@@ -15,7 +15,7 @@ public class IOTest {
 		ByteArrayInputStream in = new ByteArrayInputStream(string.getBytes());
 		System.setIn(in);
 		
-		UserInput userInput = new UserInput();
+		ConsoleUserInput userInput = new ConsoleUserInput();
 		String result = userInput.getUserInput();
 		assertEquals(string, result);
 	}

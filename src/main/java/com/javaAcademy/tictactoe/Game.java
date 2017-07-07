@@ -6,9 +6,6 @@ import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.GameSettings;
 import com.javaAcademy.tictactoe.model.GameStatistics;
 
-/**
- * Created by patrycja on 29.06.17.
- */
 public class Game {
 
     public Game(GameSettings settings, GameStatistics statistics) {

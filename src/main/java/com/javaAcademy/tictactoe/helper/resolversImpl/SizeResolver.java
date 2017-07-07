@@ -1,24 +1,24 @@
 package com.javaAcademy.tictactoe.helper.resolversImpl;
 
-import java.util.Locale;
-
 import com.javaAcademy.tictactoe.exceptions.DigitLessThanThreeException;
 import com.javaAcademy.tictactoe.exceptions.WinningConditionTooBigException;
 import com.javaAcademy.tictactoe.helper.DataParser;
 import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
+import com.javaAcademy.tictactoe.view.Printer;
 
 
 public class SizeResolver<T> extends DataResolver<T> {
 
 
-	public SizeResolver(Locale locale, UserInput userInput) {
-		super(locale, userInput);
+	public SizeResolver(UserInput userInput, Printer printer) {
+		super(userInput, printer);
 	}
+	
 	@Override
 	public void resolveIO(String key, Object ...params) {
 		try {
-			showMessage(key);
+			printer.printMessage(key);
 			String data = userInput.getUserInput();
 			
 			checkIfCancelGame(data); 
@@ -26,13 +26,13 @@ public class SizeResolver<T> extends DataResolver<T> {
 			int size = DataParser.parseToInt(data);
 			checkData(size, params);
 		} catch (WinningConditionTooBigException e) {
-			showMessage("empty.winningConditionTooBig");
+			printer.printMessage("empty.winningConditionTooBig");
 			resolveIO(key, params);
 		} catch (NumberFormatException e) {
-			showMessage("empty.noNumberException");
+			printer.printMessage("empty.noNumberException");
 			resolveIO(key, params);
 		} catch (DigitLessThanThreeException e) {
-			showMessage("empty.digitLessThan3");
+			printer.printMessage("empty.digitLessThan3");
 			resolveIO(key, params);
 		}
 	}

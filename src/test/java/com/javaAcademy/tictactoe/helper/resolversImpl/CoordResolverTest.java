@@ -21,7 +21,7 @@ public class CoordResolverTest {
 	
 	@Test(expectedExceptions = IllegalMoveException.class)
 	public void shouldThrowIllegalMoveException() {
-		CoordResolver<?> dataResolver = new CoordResolver<Integer>(locale, null);
+		CoordResolver<?> dataResolver = new CoordResolver<Integer>(null, null);
 		
 		int dimension = 4;
 		int dataFromUser = 6;

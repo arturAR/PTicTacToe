@@ -20,8 +20,7 @@ public class DataResolverTest {
 	
 	@Test(expectedExceptions = CancelGameException.class)
 	public void shouldThrowCancelGameException() {
-		UserInput userInput = new UserInput();
-		DataResolver<?> dataResolver = new CoordResolver<Integer>(locale, userInput);
+		DataResolver<?> dataResolver = new CoordResolver<Integer>(null, null);
 
 		String data = "q";
 		dataResolver.checkIfCancelGame(data);

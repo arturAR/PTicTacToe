@@ -1,23 +1,21 @@
 package com.javaAcademy.tictactoe.helper.resolversImpl;
 
-import java.util.Locale;
-
 import com.javaAcademy.tictactoe.exceptions.IllegalMoveException;
 import com.javaAcademy.tictactoe.helper.DataParser;
 import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
+import com.javaAcademy.tictactoe.view.Printer;
 
 public class CoordResolver<T> extends DataResolver<T> {
 	
-
-	public CoordResolver(Locale locale, UserInput userInput) {
-		super(locale, userInput);
+	public CoordResolver(UserInput userInput, Printer printer) {
+		super(userInput, printer);
 	}
 
 	@Override
 	public void resolveIO(String key, Object ...params) {
 		try {
-			showMessage(key);
+			printer.printMessage(key);
 			String data = userInput.getUserInput();
 			
 			checkIfCancelGame(data); 
@@ -25,10 +23,10 @@ public class CoordResolver<T> extends DataResolver<T> {
 			int coord = DataParser.parseToInt(data);
 			checkData(coord, params);
 		} catch(IllegalMoveException e) {
-			showMessage("empty.illegalCoord");
+			printer.printMessage("empty.illegalCoord");
 			resolveIO(key, params);
 		} catch(NumberFormatException e) {
-			showMessage("empty.noNumberException");
+			printer.printMessage("empty.noNumberException");
 			resolveIO(key, params);
 		}
 	}
