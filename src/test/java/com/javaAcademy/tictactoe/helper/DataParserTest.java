@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe;
+package com.javaAcademy.tictactoe.helper;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.*;

@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.AlgorithmTests;
+package com.javaAcademy.tictactoe.businnesLogic.directions;
 
 import static org.testng.Assert.assertEquals;
 

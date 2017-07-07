@@ -32,19 +32,20 @@ When board is full and there is no winner - there is a draw.
     +13. Winning condition has variable number of characters: 3, 4, 5, etc. (user provides)
     14. Game messages should have configurable target: console (System.out) or logs (for the sake of this exercise it’s OK to make it System.err), or external printer.
     +15. before game starts it asks who goes first, O or X
-    16. We are bi-lingual: Polish and English are fine. In future we want to add more languages: messages are to be read from a file for chosen language. Choosing the language depends on configuration variable.
+    +16. We are bi-lingual: Polish and English are fine. In future we want to add more languages: messages are to be read from a file for chosen language. Choosing the language depends on configuration variable.
+    17. I can play through network (not on one machine)
 
 # TO DO list
     
 	- testy
-	- możliwe przerwanie gry dla parametru q
 	- refactoring !!!! lepszy podział obowiązków między klasy
-	- sprawdzenie przyjmowanych parametrów
 	- poprawa wydajności sprawdzenia wygranej(możliwa zmiana implementacji areny do mapy)
-	- internacjolizacja(czytanie i obsługa wszystkich parametrów)
-	- obsługa tury - przyda się przy sieciowej wersji
-	- wersja sieciowa
-	- obsługa wyjątków
+	
+	- zmiana IOResolvera:
+		+ przyjmowanie parametrów o typie MessagePrintera<stworzenie dwóch na interfejsie, jeden dla sieciowego drugi dla normalnego> 
+		+ UserInput jako interfejs i wstrzykiwanie go w zależności od wersji
+	- dwie drogi programu sieciowego: klient i serwer
+	
 
 # For review & questions & doubts
 

@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.IOTests;
+package com.javaAcademy.tictactoe.helper.resolversImpl;
 
 import java.io.ByteArrayInputStream;
 import java.util.Locale;

@@ -52,53 +52,6 @@ public class Battle {
 		return new BattleResult(Symbol.O, Symbol.X, false);
 	}
 	
-	public BattleResult doNetworkBattle() {
-		boolean someoneWin = false;
-		int cnt = 0;
-		TablePrinter.printArena(gameArena); 
-		Symbol symbol = Symbol.X;
-		do{
-			if(cnt%2 == 0) {
-				symbol = settings.getWhoStarts();
-			} else {
-				symbol = symbol.getOppositeSymbol(settings.getWhoStarts());
-			}
-			someoneWin = doNetworkMove(symbol, statistics.getPlayerBySymbol(symbol).getClientOrServer());
-			if(someoneWin) {
-				ioResolver.resolveIO("empty.battleWinner", symbol.toString());
-				return new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
-			}
-	    	cnt++;
-	    	TablePrinter.printArena(gameArena); 
-		} while(cnt < gameArena.getAmountOfSymbols() && !someoneWin);
-		ioResolver.resolveIO("empty.battleNoWinner");
-		return new BattleResult(Symbol.O, Symbol.X, false);
-	}
-	
-	private boolean doNetworkMove(Symbol symbol, Type type) {
-		Point tempPoint = getPointIfEmptyNetwork(gameArena, symbol, type);
-		gameArena.setSymbol(symbol, tempPoint);
-		return checker.win(gameArena, symbol);
-	}
-	
-	private Point getPointIfEmptyNetwork(GameArena arena, Symbol symbol, Type type) {
-		ioResolver.resolveIO("empty.whoTurn.first", symbol);
-		
-		CoordResolver<?> algoRes = (CoordResolver<?>) ioResolver.resolveIO("int.coord.xCoord", "X", arena.getXDimension());
-    	Integer xDim = (Integer) algoRes.getValue();
-    	
-    	algoRes = (CoordResolver<?>) ioResolver.resolveIO("int.coord.yCoord", "Y", arena.getYDimension());
-    	Integer yDim = (Integer) algoRes.getValue();
-    	
-    	ioResolver.resolveIO("empty.chosenCoords", xDim + "|" + yDim);
-		
-		if((arena.getArena()[xDim][yDim]).equals(Symbol.EMPTY)) {
-			return new Point(xDim, yDim);
-		}
-		ioResolver.resolveIO("empty.pointOccupied");
-		return getPointIfEmpty(arena, symbol);
-	}
-	
 	private boolean doMove(Symbol symbol) {
 		Point tempPoint = getPointIfEmpty(gameArena, symbol);
 		gameArena.setSymbol(symbol, tempPoint);

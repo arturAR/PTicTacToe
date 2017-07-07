@@ -33,13 +33,13 @@ public class CoordResolver<T> extends DataResolver<T> {
 		}
 	}
 
-	private void checkData(int coord, Object[] params) {
+	void checkData(int coord, Object[] params) {
 		Integer dimension = (Integer) params[1];
 		checkCoordIsOnBoard(dimension, coord);
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void checkCoordIsOnBoard(int dimension, Integer data) {
+	void checkCoordIsOnBoard(int dimension, Integer data) {
 		if(data < dimension && data > 0) {
 			value = (T) data;
 		} else {

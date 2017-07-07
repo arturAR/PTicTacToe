@@ -28,7 +28,7 @@ public class ServerSocketExample {
             String line = bufferedReader.readLine();
             System.out.println("TO JEST ODEBRANE: " + line);
             while (!line.equals("")){
-                bufferedWriter.write("\nSever says: ");
+                bufferedWriter.write("\nServer says: ");
                 bufferedWriter.write(line);
                 bufferedWriter.write("\n");
                 bufferedWriter.flush();

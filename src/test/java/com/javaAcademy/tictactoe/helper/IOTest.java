@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.IOTests;
+package com.javaAcademy.tictactoe.helper;
 
 import java.io.ByteArrayInputStream;
 

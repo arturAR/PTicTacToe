@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe;
+package com.javaAcademy.tictactoe.model;
 
 import static org.testng.Assert.assertEquals;
 
