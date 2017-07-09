@@ -9,10 +9,14 @@ import java.util.Scanner;
 
 public class ClientSocket {
 	
+	private static int port = 1978;
+	private static String addressIP = "192.168.1.4";
+	
 	public static void main(String[] args) throws Exception{
 		
-		for(int i = 0; i < 5 ; i++) {
-			Socket socket = new Socket("192.168.1.6", 1978);
+		//for(int i = 0; i < 5 ; i++) {
+			Socket socket = new Socket(addressIP, port);
+			//Socket socket = new Socket("192.168.1.6", 1978);
 			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		    Scanner s = new Scanner(System.in);
 		    String a = s.nextLine();
@@ -29,6 +33,8 @@ public class ClientSocket {
 		        System.out.flush();
 		        line = reader.readLine();
 			}
-		}
+		//}
     }
+	
+	
 }

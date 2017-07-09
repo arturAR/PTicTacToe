@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class ServerSocketExample {
 	
@@ -13,7 +14,7 @@ public class ServerSocketExample {
         ServerSocket serverSocket = new ServerSocket(1978);
         int cnt = 0;
         //while (true){
-        for(int i = 0; i < 5 ; i++) {
+      //  for(int i = 0; i < 5 ; i++) {
         	cnt++;
         	System.out.println(cnt);
             Socket socket = serverSocket.accept();
@@ -40,7 +41,8 @@ public class ServerSocketExample {
             bufferedWriter.write("Koniec polaczenia.");
             bufferedWriter.flush();
             socket.close();
-        }
+      //  }
     }
+	
 }
 

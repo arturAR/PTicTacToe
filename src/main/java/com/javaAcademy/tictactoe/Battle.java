@@ -1,5 +1,7 @@
 package com.javaAcademy.tictactoe;
 
+import java.io.IOException;
+
 import com.javaAcademy.tictactoe.businessLogic.CheckerAlgorithm;
 import com.javaAcademy.tictactoe.helper.IOResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
@@ -32,7 +34,7 @@ public class Battle {
 	public BattleResult doBattle() {
 		boolean someoneWin = false;
 		int cnt = 0;
-		TablePrinter.printArena(gameArena); 
+		ioResolver.getPrinter().printArena(gameArena);
 		Symbol symbol = settings.getWhoStarts();
 		do{
 			if(cnt%2 == 0) {
@@ -46,7 +48,7 @@ public class Battle {
 				return new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
 			}
 	    	cnt++;
-	    	TablePrinter.printArena(gameArena); 
+	    	ioResolver.getPrinter().printArena(gameArena); 
 		} while(cnt < gameArena.getAmountOfSymbols() && !someoneWin);
 		ioResolver.resolveIO("empty.battleNoWinner");
 		return new BattleResult(Symbol.O, Symbol.X, false);

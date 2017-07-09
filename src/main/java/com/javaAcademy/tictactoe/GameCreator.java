@@ -13,30 +13,11 @@ import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Symbol;
 import com.javaAcademy.tictactoe.network.NetworkGame;
 
-/**
- * Created by patrycja on 28.06.17.
- */
+
 public class GameCreator {
 	
 	Scanner s = new Scanner(System.in);
 	private static IOResolver ioResolver;
-    
-    void startNetworkGame() {
-    	System.out.println("Choose 1 to create a game, else you will join to created game.");
-    	String type = s.nextLine();
-    	if(type.equals("1")) {
-	    	try {
-		    	GameSettings settings = getGameSettings();
-		    	GameStatistics statistics = getGameStatistics();
-		    		
-		    	NetworkGame.startGame(settings, statistics);
-		    } catch(CancelGameException e) {
-		    	ioResolver.resolveIO("epty.gameEnd");
-		    }
-    	} else {
-    		
-    	}
-	}
 
 	void startNormalGame() {
     	try {

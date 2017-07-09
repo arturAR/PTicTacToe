@@ -8,6 +8,7 @@ import com.javaAcademy.tictactoe.helper.resolversImpl.EmptyResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
 import com.javaAcademy.tictactoe.view.Printer;
+import com.javaAcademy.tictactoe.view.TablePrinter;
 
 public class IOResolver {
 	
@@ -51,5 +52,9 @@ public class IOResolver {
 		}
 		dataResolver.resolveIO(key, params);
 		return dataResolver;
+	}
+
+	public Printer getPrinter() {
+		return printer;
 	}
 }

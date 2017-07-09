@@ -49,8 +49,15 @@ public class NetworkPrinter implements Printer {
 			setSocket();
 			bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			showMessage(message);
+			socket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -66,6 +73,12 @@ public class NetworkPrinter implements Printer {
 			showMessage(message);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -80,6 +93,11 @@ public class NetworkPrinter implements Printer {
 			bufferedWriter.write(message);
 			bufferedWriter.flush();
 		}
+		try {
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}	
 	
 	public void setType(Type type) {
@@ -87,7 +105,7 @@ public class NetworkPrinter implements Printer {
 	}
 
 	@Override
-	public void printArena(GameArena arena) throws IOException {
+	public void printArena(GameArena arena) {
 		Symbol[][] playArena = arena.getArena();
 		String message = "";
 		for(int y = 1; y < arena.getYDimension(); y++) {
@@ -96,7 +114,11 @@ public class NetworkPrinter implements Printer {
 				message += "  |" +  printPoint(playArena[x][y]);
 			}
 		}
-		showMessage(message);
+		try {
+			showMessage(message);
+		} catch (IOException e) {
+			System.out.println("Connection refused!");
+		}
 	}
 	
 	String printPoint(Symbol point) {
