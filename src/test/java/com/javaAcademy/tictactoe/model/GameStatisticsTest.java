@@ -9,15 +9,25 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.javaAcademy.tictactoe.helper.IOResolver;
+import com.javaAcademy.tictactoe.helper.UserInput;
+import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
 import com.javaAcademy.tictactoe.model.BattleResult;
 import com.javaAcademy.tictactoe.model.GameStatistics;
 import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Symbol;
+import com.javaAcademy.tictactoe.view.ConsolePrinter;
+import com.javaAcademy.tictactoe.view.Printer;
 
 public class GameStatisticsTest {
 	
 	private Player playerX;
 	private Player playerO;
+	
+	private String language = new String("en");
+    private String country = new String("EN");
+    private Locale locale;
+    private UserInput userInput;
+	private Printer printer;
 	
 	@BeforeMethod
 	public void createPlayers() {
@@ -29,7 +39,12 @@ public class GameStatisticsTest {
 	
 	@BeforeTest
 	public void createIOResolver() {
-		IOResolver.createIOResolver(new Locale("en", "EN"));
+		
+		locale = new Locale(language, country);
+		printer = new ConsolePrinter();
+		userInput = new ConsoleUserInput();
+		
+		IOResolver.createIOResolver(locale, userInput, printer);
 	}
 	
 	@Test

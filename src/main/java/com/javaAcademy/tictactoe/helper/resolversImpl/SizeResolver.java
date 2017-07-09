@@ -1,5 +1,7 @@
 package com.javaAcademy.tictactoe.helper.resolversImpl;
 
+import java.io.IOException;
+
 import com.javaAcademy.tictactoe.exceptions.DigitLessThanThreeException;
 import com.javaAcademy.tictactoe.exceptions.WinningConditionTooBigException;
 import com.javaAcademy.tictactoe.helper.DataParser;
@@ -34,11 +36,14 @@ public class SizeResolver<T> extends DataResolver<T> {
 		} catch (DigitLessThanThreeException e) {
 			printer.printMessage("empty.digitLessThan3");
 			resolveIO(key, params);
+		} catch (IOException e) {
+			printer.printMessage("empty.ioException");
+			resolveIO(key, params);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	private void checkData(Integer size, Object[] params) {
+	void checkData(Integer size, Object[] params) {
 		int smallestDim = -1 ;
 		for (Object param : params) {
 			Integer dim = (Integer) param;

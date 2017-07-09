@@ -12,7 +12,8 @@ public class ServerSocketExample {
 	public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(1978);
         int cnt = 0;
-        while (true){
+        //while (true){
+        for(int i = 0; i < 5 ; i++) {
         	cnt++;
         	System.out.println(cnt);
             Socket socket = serverSocket.accept();

@@ -6,9 +6,11 @@ import java.net.Socket;
 
 public class Server {
 	
+	private ServerSocket serverSocket;
+	
 	public void createServer() {
 		try {
-			ServerSocket serverSocket = new ServerSocket(1978);
+			serverSocket = new ServerSocket(1978);
 			while (true){
 				Socket socket = serverSocket.accept();
 				 

@@ -1,5 +1,7 @@
 package com.javaAcademy.tictactoe.helper.resolversImpl;
 
+import java.io.IOException;
+
 import com.javaAcademy.tictactoe.exceptions.IllegalMoveException;
 import com.javaAcademy.tictactoe.helper.DataParser;
 import com.javaAcademy.tictactoe.helper.DataResolver;
@@ -28,6 +30,9 @@ public class CoordResolver<T> extends DataResolver<T> {
 		} catch(NumberFormatException e) {
 			printer.printMessage("empty.noNumberException");
 			resolveIO(key, params);
+		} catch(IOException e) {
+			printer.printMessage("empty.ioException");
+			resolveIO(key, params);
 		}
 	}
 
@@ -41,7 +46,7 @@ public class CoordResolver<T> extends DataResolver<T> {
 		if(data < dimension && data > 0) {
 			value = (T) data;
 		} else {
-			throw new IllegalMoveException();
+			throw new IllegalMoveException("Coordinate out of board!");
 		}
 	}
 

@@ -2,7 +2,7 @@ package com.javaAcademy.tictactoe.view;
 
 import static org.testng.Assert.assertEquals;
 
-import com.javaAcademy.tictactoe.view.MessagePrinter;
+import com.javaAcademy.tictactoe.view.ConsolePrinter;
 import org.testng.annotations.Test;
 
 public class MessagePrinterTest {
@@ -13,7 +13,7 @@ public class MessagePrinterTest {
         System.setOut(new java.io.PrintStream(out));
 
         String testString = "hello world";
-        MessagePrinter.printMessageSOutLn(testString);
+        ConsolePrinter.printMessageSOutLn(testString);
         testString = testString + "\n";
         
         assertEquals(out.toString(), testString);
@@ -25,7 +25,7 @@ public class MessagePrinterTest {
         System.setErr(new java.io.PrintStream(out));
 
         String testString = "hello world";
-        MessagePrinter.printMessageSErr(testString);
+        ConsolePrinter.printMessageSErr(testString);
         testString = testString + "\n";
         
         assertEquals(out.toString(), testString);

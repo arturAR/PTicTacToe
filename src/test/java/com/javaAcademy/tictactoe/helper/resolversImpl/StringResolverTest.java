@@ -13,13 +13,13 @@ import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
 public class StringResolverTest {
 	
 	private Locale locale;
-	
+/*	
 	@BeforeTest
 	public void createIOResolver() {
 		locale = new Locale("en", "EN");
 		IOResolver.createIOResolver(locale);
 	}
-/*
+
 	@Test(expectedExceptions = CancelGameException.class)
 	public void shouldThrowCancelGameException() {
 		String string = "q";

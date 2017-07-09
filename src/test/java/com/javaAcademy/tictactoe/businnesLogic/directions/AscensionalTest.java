@@ -8,7 +8,6 @@ import com.javaAcademy.tictactoe.businessLogic.CheckerAlgorithm;
 import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.Point;
 import com.javaAcademy.tictactoe.model.Symbol;
-import com.javaAcademy.tictactoe.view.TablePrinter;
 
 
 public class AscensionalTest {
@@ -50,7 +49,6 @@ public class AscensionalTest {
 	@Test
 	public void testAscensionalThreeSymbolONotInARowOn5x4BoardArena() {
 		GameArena gameArena = GameArena.getGameArena(5, 4);
-		TablePrinter.printArena(gameArena);
 		gameArena.setSymbol(Symbol.O, new Point(5,1));
 		gameArena.setSymbol(Symbol.O, new Point(3,3));
 		gameArena.setSymbol(Symbol.O, new Point(2,4));

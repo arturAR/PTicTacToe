@@ -3,7 +3,6 @@ package com.javaAcademy.tictactoe;
 import com.javaAcademy.tictactoe.model.GameSettings;
 import com.javaAcademy.tictactoe.model.GameStatistics;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;

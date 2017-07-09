@@ -12,7 +12,7 @@ public class ClientSocket {
 	public static void main(String[] args) throws Exception{
 		
 		for(int i = 0; i < 5 ; i++) {
-			Socket socket = new Socket("10.30.1.118", 1978);
+			Socket socket = new Socket("192.168.1.6", 1978);
 			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		    Scanner s = new Scanner(System.in);
 		    String a = s.nextLine();

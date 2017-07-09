@@ -2,6 +2,7 @@ package com.javaAcademy.tictactoe.helper;
 
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
+import com.javaAcademy.tictactoe.model.Type;
 import com.javaAcademy.tictactoe.view.Printer;
 
 public abstract class DataResolver <T>{
@@ -24,5 +25,9 @@ public abstract class DataResolver <T>{
 		if(data.equals("q")) {
 			throw new CancelGameException("Cancel game");
 		}
+	}
+	
+	public void setPrinterType(Type type) {
+		printer.setType(type);
 	}
 }

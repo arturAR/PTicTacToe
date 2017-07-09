@@ -2,11 +2,8 @@ package com.javaAcademy.tictactoe.helper;
 
 import static org.testng.Assert.*;
 
-import java.util.Locale;
-
 import org.testng.annotations.*;
 
-import com.javaAcademy.tictactoe.helper.IOResolver;
 import com.javaAcademy.tictactoe.model.GameSettings;
 import com.javaAcademy.tictactoe.model.Symbol;
 
@@ -16,12 +13,6 @@ public class SettingsTest {
 	private int xDim = 5;
 	private int yDim = 4;
 	private int winningCondition = 3;
-	
-
-	@BeforeTest
-	public void createIOResolver() {
-		IOResolver.createIOResolver(new Locale("en", "EN"));
-	}
 	
 	@Test
 	public void symbolOStarts() {

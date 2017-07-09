@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 import com.javaAcademy.tictactoe.helper.UserInput;
 
-public class ConsoleUserInput implements UserInput{
+public class ConsoleUserInput implements UserInput {
 	
     private Scanner scanner = new Scanner(System.in);
 
-    public String getUserInput(){
+    @Override
+    public String getUserInput() {
         return scanner.nextLine();
     }
 }
