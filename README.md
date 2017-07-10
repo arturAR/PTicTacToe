@@ -41,10 +41,9 @@ When board is full and there is no winner - there is a draw.
 	- refactoring !!!! lepszy podział obowiązków między klasy
 	- poprawa wydajności sprawdzenia wygranej(możliwa zmiana implementacji areny do mapy)
 	
-	- zmiana IOResolvera:
-		+ przyjmowanie parametrów o typie MessagePrintera<stworzenie dwóch na interfejsie, jeden dla sieciowego drugi dla normalnego> 
-		+ UserInput jako interfejs i wstrzykiwanie go w zależności od wersji
-	- dwie drogi programu sieciowego: klient i serwer
+
+	+/- dwie drogi programu sieciowego: klient i serwer
+	- przesyłanie informacji z serwera na klient i odczyt ich na kliencie
 	
 
 # For review & questions & doubts
