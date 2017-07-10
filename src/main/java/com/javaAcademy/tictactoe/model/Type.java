@@ -4,5 +4,6 @@ public enum Type {
 
 	SERVER(),
 	CLIENT(),
-	BOTH();
+	BOTH(),
+	NORMAL();
 }

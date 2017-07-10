@@ -6,6 +6,7 @@ import com.javaAcademy.tictactoe.model.GameStatistics;
 import java.util.Scanner;
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
+import com.javaAcademy.tictactoe.gameImpl.ServerGame;
 import com.javaAcademy.tictactoe.helper.IOResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
@@ -17,25 +18,26 @@ public class GameCreator {
 	
 	Scanner s = new Scanner(System.in);
 	private static IOResolver ioResolver;
+	
 
-	void startNormalGame() {
+	void startGame() {
     	try {
     		ioResolver = IOResolver.getIOResolverInstance();
-    		GameSettings settings = getGameSettings();
+        	GameSettings settings = getGameSettings();
     		GameStatistics statistics = getGameStatistics();
     		
-    		Game.startGame(settings, statistics);
+    		ServerGame.startGame(settings, statistics);
     	} catch(CancelGameException e) {
     		ioResolver.resolveIO("epty.gameEnd");
     	}
     }
     
     private GameStatistics getGameStatistics() {
-    	ioResolver.getPrinter().setType(Type.SERVER);
+    	ioResolver.setPrinter(Type.SERVER);
     	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerONickname");
     	String playerOName = (String) strRes.getValue();
     	
-    	ioResolver.getPrinter().setType(Type.CLIENT);
+    	ioResolver.setPrinter(Type.CLIENT);
     	strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerXNickname");
     	String playerXName = (String) strRes.getValue();
     	
@@ -46,22 +48,19 @@ public class GameCreator {
 	}
 
 	private GameSettings getGameSettings() {
-		ioResolver.getPrinter().setType(Type.BOTH);
-    	ioResolver.resolveIO("empty.chosenLanguage");
-    	
-    	ioResolver.getPrinter().setType(Type.SERVER);
+    	ioResolver.setPrinter(Type.SERVER);
     	SizeResolver<?> res = (SizeResolver<?>) ioResolver.resolveIO("int.size.xDimension");
     	Integer xDim = (Integer) res.getValue();
     	
-    	ioResolver.getPrinter().setType(Type.SERVER);
+    	ioResolver.setPrinter(Type.SERVER);
     	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.yDimension");
     	Integer yDim = (Integer) res.getValue();
     	
-    	ioResolver.getPrinter().setType(Type.SERVER);
+    	ioResolver.setPrinter(Type.SERVER);
     	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.winningCondition", xDim, yDim);
     	Integer charSeriesDim = (Integer) res.getValue();
     	
-    	ioResolver.getPrinter().setType(Type.SERVER);
+    	ioResolver.setPrinter(Type.SERVER);
     	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.whoStarts");
     	String whoStarts = (String) strRes.getValue();
     	

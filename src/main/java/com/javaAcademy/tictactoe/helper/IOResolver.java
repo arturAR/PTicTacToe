@@ -7,6 +7,7 @@ import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.EmptyResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
+import com.javaAcademy.tictactoe.model.Type;
 import com.javaAcademy.tictactoe.view.Printer;
 
 public class IOResolver {
@@ -51,6 +52,11 @@ public class IOResolver {
 		}
 		dataResolver.resolveIO(key, params);
 		return dataResolver;
+	}
+
+	public void setPrinter(Type type) {
+		dataResolver.setPrinterType(type);
+		userInput.setType(type);
 	}
 
 	public Printer getPrinter() {

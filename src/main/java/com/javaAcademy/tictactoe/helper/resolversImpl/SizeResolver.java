@@ -22,7 +22,6 @@ public class SizeResolver<T> extends DataResolver<T> {
 		try {
 			printer.printMessage(key);
 			String data = userInput.getUserInput();
-			
 			checkIfCancelGame(data); 
 			
 			int size = DataParser.parseToInt(data);
@@ -55,7 +54,7 @@ public class SizeResolver<T> extends DataResolver<T> {
 				}
 			}
 		}
-		
+		System.out.println(size);
 		if(size < 3) {
 			throw new DigitLessThanThreeException("Digit less than 3!");
 		} else if(size > smallestDim && params.length != 0) {

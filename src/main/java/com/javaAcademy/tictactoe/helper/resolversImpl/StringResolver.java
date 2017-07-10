@@ -19,7 +19,7 @@ public class StringResolver<T> extends DataResolver<T> {
 		try {
 			printer.printMessage(key);
 			String data = userInput.getUserInput();
-			
+			System.out.println("Dostałem: " + data);
 			checkIfCancelGame(data); 
 			
 			value = (T) data;

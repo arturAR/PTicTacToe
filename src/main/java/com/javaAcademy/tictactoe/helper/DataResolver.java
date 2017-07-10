@@ -30,4 +30,8 @@ public abstract class DataResolver <T>{
 	public void setPrinterType(Type type) {
 		printer.setType(type);
 	}
+	
+	public void setUserInputType(Type type) {
+		userInput.setType(type);
+	}
 }

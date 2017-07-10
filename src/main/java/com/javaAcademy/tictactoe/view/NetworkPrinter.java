@@ -46,19 +46,14 @@ public class NetworkPrinter implements Printer {
 	public void printMessage(String key) {
 		try {
 			String message = IOResolver.getIOResolverInstance().getMsgByKey(key);
-			setSocket();
-			bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			showMessage(message);
-			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
 			try {
 				socket.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (IOException e1) {
+				System.out.println("Problem with close socket.");
 			}
-		}
+		} 
 	}
 
 	@Override
@@ -68,35 +63,33 @@ public class NetworkPrinter implements Printer {
 			for(Object param: params) {
 				message += " " + param;
 			}
-			setSocket();
-			bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			showMessage(message);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
 			try {
 				socket.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (IOException e1) {
+				System.out.println("Problem with close socket.");
 			}
-		}
+		} 
 	}
 	
 	private void showMessage(String message) throws IOException {
+		System.out.println("Printer jest: " + type);
 		if(type.equals(Type.SERVER)) {
 			ConsolePrinter.printMessageSOutLn(message);
 		} else if (type.equals(Type.CLIENT)){
+			setSocket();
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			bufferedWriter.write(message);
 			bufferedWriter.flush();
+			socket.close();
 		} else { //BOTH
 			ConsolePrinter.printMessageSOutLn(message);
+			setSocket();
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			bufferedWriter.write(message);
 			bufferedWriter.flush();
-		}
-		try {
 			socket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}	
 	

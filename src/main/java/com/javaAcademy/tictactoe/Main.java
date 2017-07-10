@@ -1,7 +1,9 @@
 package com.javaAcademy.tictactoe;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -13,10 +15,12 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Scanner;
 
+import com.javaAcademy.tictactoe.gameImpl.ClientGame;
 import com.javaAcademy.tictactoe.helper.IOResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
 import com.javaAcademy.tictactoe.helper.inputImpl.NetworkUserInput;
+import com.javaAcademy.tictactoe.model.Type;
 import com.javaAcademy.tictactoe.view.ConsolePrinter;
 import com.javaAcademy.tictactoe.view.NetworkPrinter;
 import com.javaAcademy.tictactoe.view.Printer;
@@ -26,6 +30,10 @@ public class Main {
 	static Scanner s = new Scanner(System.in);
 	private static UserInput userInput;
 	private static Printer printer;
+	private static Type type;
+	private static int port;
+	private static String addressIP;
+	private static ServerSocket serverSocket;
 	
 	public static void main(String[] args) throws IOException { 
         
@@ -37,49 +45,63 @@ public class Main {
     		String typeNetworkGame = s.nextLine();
     		if(typeNetworkGame.equals("1")) {
     			System.out.println("Please insert IP addess of server:");
-    			String addressIP = s.nextLine();
+    			addressIP = s.nextLine();
     			
     			System.out.println("Please insert server port:");
     			String portID = s.nextLine();
-    			int port = Integer.parseInt(portID);
+    			port = Integer.parseInt(portID);
     			
     			System.out.println("Checking connection...");
     			Socket socket = new Socket(addressIP, port);
-    			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-    			bufferedWriter.write("Hello!");
+    		    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+    			bufferedWriter.write("Hello from client!");
+    			bufferedWriter.flush();
     			System.out.println("Connected!");
     			socket.close();
-    			printer = new NetworkPrinter(addressIP, port);
-    			userInput = new NetworkUserInput();
+    			type = Type.CLIENT;
+    		    printer = new NetworkPrinter(addressIP, port);
+    			userInput = new NetworkUserInput(type);
     		} else {
     			System.out.println("Please choose server port:");
     			String portID = s.nextLine();
-    			int port = Integer.parseInt(portID);
+    			port = Integer.parseInt(portID);
     			
     			System.out.println("Your IP: ");
     			showServerIPAddresses();
     			System.out.println("Wait for connection.");
-    			ServerSocket serverSocket = new ServerSocket(port);
+    			serverSocket = new ServerSocket(port);
     			Socket socket = serverSocket.accept();
-    		    
+    			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    		    String line = reader.readLine();
+    		    System.out.println(line);
+    		    System.out.flush();
     		    System.out.println("Connected!");
+    		   
     			
     		    socket.close();
+    		    type = Type.SERVER;
     		    printer = new NetworkPrinter(serverSocket, port);
-    			userInput = new NetworkUserInput();
+    			userInput = new NetworkUserInput(serverSocket, type);
     		}
     	} else {
     		printer = new ConsolePrinter();
     		userInput = new ConsoleUserInput();
+    		type = Type.NORMAL;
     	}
-    	
     	System.out.println("Please choose the language/Wybierz język: 1 - English, 2 - Polish. Default English.");
     	String lang = s.nextLine();
     	
     	createIOResolver(lang);
+    	IOResolver ioResolver = IOResolver.getIOResolverInstance();
+		ioResolver.getPrinter().setType(Type.SERVER);
+    	ioResolver.resolveIO("empty.chosenLanguage");
     	
-    	GameCreator app = new GameCreator();
-    	app.startNormalGame();
+    	if(type.equals(Type.CLIENT)) {
+			ClientGame.startGame(addressIP, port);
+		} else {
+			GameCreator app = new GameCreator();
+			app.startGame();
+		}
 	}
 
     private static void createIOResolver(String langNumber) {
