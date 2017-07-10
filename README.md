@@ -48,3 +48,5 @@ When board is full and there is no winner - there is a draw.
 
 # For review & questions & doubts
 
+Menu wymaga refaktoryzacji. Dodatkowo nie działa przesyłanie komunikatów z serwera na klienta. 
+Wersja sieciowa na branchu networkTicTacToe, wersja bez sieci na masterze.
