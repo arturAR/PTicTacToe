@@ -1,12 +1,24 @@
 package com.javaAcademy.tictactoe;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Scanner;
 
 import com.javaAcademy.tictactoe.helper.IOResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
+import com.javaAcademy.tictactoe.helper.inputImpl.NetworkUserInput;
 import com.javaAcademy.tictactoe.view.ConsolePrinter;
+import com.javaAcademy.tictactoe.view.NetworkPrinter;
 import com.javaAcademy.tictactoe.view.Printer;
 
 public class Main {
@@ -15,12 +27,8 @@ public class Main {
 	private static UserInput userInput;
 	private static Printer printer;
 	
-	public static void main(String[] args) {
-		
-    	System.out.println("Please choose the language/Wybierz język: 1 - English, 2 - Polish. Default English.");
-    	String lang = s.nextLine();
-    	
-    	
+	public static void main(String[] args) throws IOException { 
+        
     	System.out.println("Choose 1 to play 2-players game, choose 2 to play by network.");
     	String gameType = s.nextLine();
     	
@@ -28,14 +36,45 @@ public class Main {
     		System.out.println("If you want join to game press 1, else you will create a game:");
     		String typeNetworkGame = s.nextLine();
     		if(typeNetworkGame.equals("1")) {
+    			System.out.println("Please insert IP addess of server:");
+    			String addressIP = s.nextLine();
     			
+    			System.out.println("Please insert server port:");
+    			String portID = s.nextLine();
+    			int port = Integer.parseInt(portID);
+    			
+    			System.out.println("Checking connection...");
+    			Socket socket = new Socket(addressIP, port);
+    			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+    			bufferedWriter.write("Hello!");
+    			System.out.println("Connected!");
+    			socket.close();
+    			printer = new NetworkPrinter(addressIP, port);
+    			userInput = new NetworkUserInput();
     		} else {
+    			System.out.println("Please choose server port:");
+    			String portID = s.nextLine();
+    			int port = Integer.parseInt(portID);
     			
+    			System.out.println("Your IP: ");
+    			showServerIPAddresses();
+    			System.out.println("Wait for connection.");
+    			ServerSocket serverSocket = new ServerSocket(port);
+    			Socket socket = serverSocket.accept();
+    		    
+    		    System.out.println("Connected!");
+    			
+    		    socket.close();
+    		    printer = new NetworkPrinter(serverSocket, port);
+    			userInput = new NetworkUserInput();
     		}
     	} else {
     		printer = new ConsolePrinter();
     		userInput = new ConsoleUserInput();
     	}
+    	
+    	System.out.println("Please choose the language/Wybierz język: 1 - English, 2 - Polish. Default English.");
+    	String lang = s.nextLine();
     	
     	createIOResolver(lang);
     	
@@ -55,4 +94,17 @@ public class Main {
 				IOResolver.createIOResolver(new Locale("en", "EN"), userInput, printer);
 		}
 	}
+    
+    private static void showServerIPAddresses() throws SocketException {
+    	Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+        for (NetworkInterface netint : Collections.list(nets)) {
+	        Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
+	        for (InetAddress inetAddress : Collections.list(inetAddresses)) {
+	        	if(!inetAddress.toString().contains(":") && !inetAddress.toString().equals("/127.0.0.1")) {
+	        		System.out.printf("%s\n", inetAddress.toString().replace("/", ""));
+	        	}
+	        }
+	        System.out.printf("\n");
+        }
+    }
 }

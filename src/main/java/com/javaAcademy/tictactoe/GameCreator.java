@@ -11,8 +11,7 @@ import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
 import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Symbol;
-import com.javaAcademy.tictactoe.network.NetworkGame;
-
+import com.javaAcademy.tictactoe.model.Type;
 
 public class GameCreator {
 	
@@ -21,6 +20,7 @@ public class GameCreator {
 
 	void startNormalGame() {
     	try {
+    		ioResolver = IOResolver.getIOResolverInstance();
     		GameSettings settings = getGameSettings();
     		GameStatistics statistics = getGameStatistics();
     		
@@ -31,9 +31,11 @@ public class GameCreator {
     }
     
     private GameStatistics getGameStatistics() {
+    	ioResolver.getPrinter().setType(Type.SERVER);
     	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerONickname");
     	String playerOName = (String) strRes.getValue();
     	
+    	ioResolver.getPrinter().setType(Type.CLIENT);
     	strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerXNickname");
     	String playerXName = (String) strRes.getValue();
     	
@@ -44,17 +46,22 @@ public class GameCreator {
 	}
 
 	private GameSettings getGameSettings() {
+		ioResolver.getPrinter().setType(Type.BOTH);
     	ioResolver.resolveIO("empty.chosenLanguage");
     	
+    	ioResolver.getPrinter().setType(Type.SERVER);
     	SizeResolver<?> res = (SizeResolver<?>) ioResolver.resolveIO("int.size.xDimension");
     	Integer xDim = (Integer) res.getValue();
     	
+    	ioResolver.getPrinter().setType(Type.SERVER);
     	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.yDimension");
     	Integer yDim = (Integer) res.getValue();
     	
+    	ioResolver.getPrinter().setType(Type.SERVER);
     	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.winningCondition", xDim, yDim);
     	Integer charSeriesDim = (Integer) res.getValue();
     	
+    	ioResolver.getPrinter().setType(Type.SERVER);
     	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.whoStarts");
     	String whoStarts = (String) strRes.getValue();
     	

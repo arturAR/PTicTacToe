@@ -31,7 +31,7 @@ public class NetworkPrinter implements Printer {
 	public NetworkPrinter(ServerSocket server, int port) {
 		this.server = server;
 		this.port = port;
-		this.isServer = false;
+		this.isServer = true;
 	}
 	
 	private void setSocket() throws UnknownHostException, IOException {

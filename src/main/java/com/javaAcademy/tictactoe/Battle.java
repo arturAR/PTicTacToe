@@ -1,7 +1,5 @@
 package com.javaAcademy.tictactoe;
 
-import java.io.IOException;
-
 import com.javaAcademy.tictactoe.businessLogic.CheckerAlgorithm;
 import com.javaAcademy.tictactoe.helper.IOResolver;
 import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
@@ -9,10 +7,10 @@ import com.javaAcademy.tictactoe.model.BattleResult;
 import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.GameSettings;
 import com.javaAcademy.tictactoe.model.GameStatistics;
+import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Point;
 import com.javaAcademy.tictactoe.model.Symbol;
 import com.javaAcademy.tictactoe.model.Type;
-import com.javaAcademy.tictactoe.view.TablePrinter;
 
 
 public class Battle {
@@ -36,14 +34,17 @@ public class Battle {
 		int cnt = 0;
 		ioResolver.getPrinter().printArena(gameArena);
 		Symbol symbol = settings.getWhoStarts();
+		Player player1 = statistics.getPlayerBySymbol(symbol);
+		Player player2 = statistics.getPlayerBySymbol(symbol.getOppositeSymbol(settings.getWhoStarts()));
 		do{
 			if(cnt%2 == 0) {
-				symbol = settings.getWhoStarts();
+				symbol = player1.getSymbol();
 			} else {
-				symbol = symbol.getOppositeSymbol(settings.getWhoStarts());
+				symbol = player2.getSymbol();
 			}
 			someoneWin = doMove(symbol);
 			if(someoneWin) {
+				//ioResolver.getPrinter().setType(Type.SERVER);
 				ioResolver.resolveIO("empty.battleWinner", symbol.toString());
 				return new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
 			}

@@ -23,10 +23,14 @@ public class ServerSocketExample {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             bufferedWriter.write("getLocalAddress: " + socket.getLocalAddress() +" \n");
 		    bufferedWriter.write("getRemoteSocketAddress: "  + socket.getRemoteSocketAddress() +" \n");
-		    bufferedWriter.write("socket.getInetAddress: "  + socket.getInetAddress() +" \n");
+		    bufferedWriter.write("socketServer.getInetAddress: "  + serverSocket.getInetAddress() +" \n");
 		    bufferedWriter.write("socket.getInetAddress().getLoopbackAddress() : "  + socket.getInetAddress().getLoopbackAddress() +" \n");
 		    bufferedWriter.write("socket.getLocalSocketAddress: " + socket.getLocalSocketAddress() +" \n\n");
-            bufferedWriter.write("Napisz: \"END\" by zakończyć połączenie.");
+            
+		    bufferedWriter.write("socket.getLocalSocketAddress: " + serverSocket.getLocalSocketAddress() +" \n\n");
+		    bufferedWriter.write("socket.getLocalSocketAddress: " + serverSocket.getLocalPort() +" \n\n");
+		    
+		    bufferedWriter.write("Napisz: \"END\" by zakończyć połączenie.");
             String line = bufferedReader.readLine();
             System.out.println("TO JEST ODEBRANE: " + line);
             while (!line.equals("")){

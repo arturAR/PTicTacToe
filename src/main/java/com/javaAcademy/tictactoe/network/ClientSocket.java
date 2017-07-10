@@ -10,7 +10,9 @@ import java.util.Scanner;
 public class ClientSocket {
 	
 	private static int port = 1978;
-	private static String addressIP = "192.168.1.4";
+	//private static String addressIP = "192.168.56.1";
+	//private static String addressIP = "10.0.2.15";
+	private static String addressIP = "10.30.1.118";
 	
 	public static void main(String[] args) throws Exception{
 		

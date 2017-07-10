@@ -12,6 +12,7 @@ public class NetworkUserInput implements UserInput{
 	private Type type;
 	private Scanner scanner = new Scanner(System.in);
 	private BufferedReader reader;
+
 	
 	@Override
 	public String getUserInput() throws IOException {
