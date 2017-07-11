@@ -10,7 +10,6 @@ import com.javaAcademy.tictactoe.model.GameStatistics;
 import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Point;
 import com.javaAcademy.tictactoe.model.Symbol;
-import com.javaAcademy.tictactoe.model.Type;
 
 
 public class Battle {
@@ -32,43 +31,43 @@ public class Battle {
 	public BattleResult doBattle() {
 		boolean someoneWin = false;
 		int cnt = 0;
-		ioResolver.getPrinter().printArena(gameArena);
+		//ioResolver.getPrinter().printArena(gameArena);
 		Symbol symbol = settings.getWhoStarts();
 		Player player1 = statistics.getPlayerBySymbol(symbol);
-		Player player2 = statistics.getPlayerBySymbol(symbol.getOppositeSymbol(settings.getWhoStarts()));
+		Player player2 = statistics.getPlayerBySymbol(symbol.getOppositeSymbol());
 		do{
-			if(cnt%2 == 0) {
-				symbol = player1.getSymbol();
-			} else {
-				symbol = player2.getSymbol();
-			}
-			someoneWin = doMove(symbol);
-			if(someoneWin) {
-				//ioResolver.getPrinter().setType(Type.SERVER);
+			symbol = getNextSymbol(cnt, player1, player2);
+			Point tempPoint = getPointIfEmpty(gameArena, symbol);
+			gameArena.setSymbol(symbol, tempPoint);
+			if(checker.win(symbol)) {
 				ioResolver.resolveIO("empty.battleWinner", symbol.toString());
-				return new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
+				return new BattleResult(symbol, symbol.getOppositeSymbol(), true);
 			}
 	    	cnt++;
-	    	ioResolver.getPrinter().printArena(gameArena); 
+	    	//ioResolver.getPrinter().printArena(gameArena); 
 		} while(cnt < gameArena.getAmountOfSymbols() && !someoneWin);
 		ioResolver.resolveIO("empty.battleNoWinner");
 		return new BattleResult(Symbol.O, Symbol.X, false);
 	}
-	
-	private boolean doMove(Symbol symbol) {
-		Point tempPoint = getPointIfEmpty(gameArena, symbol);
-		gameArena.setSymbol(symbol, tempPoint);
-		return checker.win(gameArena, symbol);
+
+	private Symbol getNextSymbol(int cnt, Player player1, Player player2) {
+		Symbol symbol;
+		if(cnt%2 == 0) {
+			symbol = player1.getSymbol();
+		} else {
+			symbol = player2.getSymbol();
+		}
+		return symbol;
 	}
 
 	private Point getPointIfEmpty(GameArena arena, Symbol symbol) {
 		ioResolver.resolveIO("empty.whoTurn.first", symbol);
 		
-		CoordResolver<?> algoRes = (CoordResolver<?>) ioResolver.resolveIO("int.coord.xCoord", "X", arena.getXDimension());
-    	Integer xDim = (Integer) algoRes.getValue();
+		CoordResolver algoRes = (CoordResolver) ioResolver.resolveIO("int.coord.xCoord", "X", arena.getXDimension());
+    	Integer xDim = algoRes.getValue();
     	
-    	algoRes = (CoordResolver<?>) ioResolver.resolveIO("int.coord.yCoord", "Y", arena.getYDimension());
-    	Integer yDim = (Integer) algoRes.getValue();
+    	algoRes = (CoordResolver) ioResolver.resolveIO("int.coord.yCoord", "Y", arena.getYDimension());
+    	Integer yDim = algoRes.getValue();
     	
     	ioResolver.resolveIO("empty.chosenCoords", xDim + "|" + yDim);
 		

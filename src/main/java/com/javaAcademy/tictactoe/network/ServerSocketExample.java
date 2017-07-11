@@ -11,21 +11,81 @@ import java.util.Scanner;
 
 public class ServerSocketExample {
 	
+	static ServerSocket serverSocket;
+	static Socket socket;
+	static BufferedWriter bufferedWriter;
+	static BufferedReader reader;
 	
 	public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(12347);
-        int cnt = 0;
+        serverSocket = new ServerSocket(1978);
+
+        socket = serverSocket.accept(); 
+        writeData("Podaj mi imie: ");
+        socket.close();
+        
+        socket = serverSocket.accept(); 
+        readData();
+        socket.close();
+        
+        socket = serverSocket.accept(); 
+        writeData("Podaj mi nazwisko: ");
+        socket.close();
+        
+        socket = serverSocket.accept(); 
+        readData();
+        socket.close();
+        
+      /*  
+        
+        socket = serverSocket.accept(); 
+        readData();
+        writeData("Podaj mi nazwisko: ");
+        readData();
+        socket.close();*/
+    }
+	
+	private static void refresh() throws IOException {
+		reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		String line = reader.readLine();
+		while (line != null){
+			System.out.flush();
+			line = reader.readLine();
+		}
+	}
+	
+	private static void readData() throws IOException {
+		reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		System.out.println("chce czytać");
+        String line = reader.readLine();
+		String msg = "";
+        while (line != null) {
+			msg += line;
+        	line = reader.readLine();
+		}
+        System.out.println("cała wiadomość: " + msg);
+	}
+
+	static void writeData(String message) throws IOException {
+        bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        bufferedWriter.write(message +" \n");
+		bufferedWriter.flush();
+	}
+	
+	
+
+}
+/*
+ * 
+ * public static void main(String[] args) throws IOException {
+        serverSocket = new ServerSocket(12347);
        // while (true){
         for(int i = 0; i < 3 ; i++) {
-        	cnt++;
-        	System.out.println(cnt);
-            Socket socket = serverSocket.accept();
+            socket = serverSocket.accept();
             
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             
             bufferedWriter.write("Podaj mi imie: " +" \n");
-            bufferedWriter.write("Tylko prawdziwe! \n\n");
 			bufferedWriter.flush();
             
             String line = bufferedReader.readLine();
@@ -43,67 +103,5 @@ public class ServerSocketExample {
             socket.close();
         }
     }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/*	public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(1978);
-        int cnt = 0;
-        //while (true){
-      //  for(int i = 0; i < 5 ; i++) {
-        	cnt++;
-        	System.out.println(cnt);
-            Socket socket = serverSocket.accept();
-            System.out.println(socket.getRemoteSocketAddress());
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            bufferedWriter.write("getLocalAddress: " + socket.getLocalAddress() +" \n");
-		    bufferedWriter.write("getRemoteSocketAddress: "  + socket.getRemoteSocketAddress() +" \n");
-		    bufferedWriter.write("socketServer.getInetAddress: "  + serverSocket.getInetAddress() +" \n");
-		    bufferedWriter.write("socket.getInetAddress().getLoopbackAddress() : "  + socket.getInetAddress().getLoopbackAddress() +" \n");
-		    bufferedWriter.write("socket.getLocalSocketAddress: " + socket.getLocalSocketAddress() +" \n\n");
-            
-		    bufferedWriter.write("socket.getLocalSocketAddress: " + serverSocket.getLocalSocketAddress() +" \n\n");
-		    bufferedWriter.write("socket.getLocalSocketAddress: " + serverSocket.getLocalPort() +" \n\n");
-		    
-		    bufferedWriter.write("Napisz: \"END\" by zakończyć połączenie.");
-            String line = bufferedReader.readLine();
-            System.out.println("TO JEST ODEBRANE: " + line);
-            while (!line.equals("")){
-                bufferedWriter.write("\nServer says: ");
-                bufferedWriter.write(line);
-                bufferedWriter.write("\n");
-                bufferedWriter.flush();
-                line = bufferedReader.readLine();
-                System.out.println("TO JEST ODEBRANE: " + line+".");
-            }
-            
-            bufferedWriter.write("Koniec polaczenia.");
-            bufferedWriter.flush();
-            socket.close();
-      //  }
-    }
-	*/
-}
-
+ * 
+ * */
