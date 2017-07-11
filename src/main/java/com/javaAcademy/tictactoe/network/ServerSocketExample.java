@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class ServerSocketExample {
 	
@@ -19,21 +20,26 @@ public class ServerSocketExample {
         	cnt++;
         	System.out.println(cnt);
             Socket socket = serverSocket.accept();
-            System.out.println("Stworzylem socket");
+            
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            
+            bufferedWriter.write("Podaj mi imie: " +" \n");
+            bufferedWriter.write("Tylko prawdziwe! \n\n");
+			bufferedWriter.flush();
+            
             String line = bufferedReader.readLine();
             System.out.println("TO JEST ODEBRANE: " + line);
-            while (!line.equals("")){
-                bufferedWriter.write("\nSever says: ");
-                bufferedWriter.write(line);
-                bufferedWriter.write("\n");
-                bufferedWriter.flush();
-                line = bufferedReader.readLine();
-            }
+          //  while (!line.equals("")){
+               // bufferedWriter.write("\nSever says: ");
+               // bufferedWriter.write(line);
+               // bufferedWriter.write("\n");
+              //  bufferedWriter.flush();
+              //  line = bufferedReader.readLine();
+           // }
             
-            bufferedWriter.write("Koniec polaczenia.");
-            bufferedWriter.flush();
+           // bufferedWriter.write("Koniec polaczenia.");
+           // bufferedWriter.flush();
             socket.close();
         }
     }

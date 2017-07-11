@@ -7,9 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+import com.javaAcademy.tictactoe.gameImpl.Server;
 import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.model.Type;
-import com.javaAcademy.tictactoe.network.Server;
 
 public class NetworkUserInput implements UserInput{
 

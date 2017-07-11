@@ -13,51 +13,34 @@ public class ClientSocket {
 	//private static String addressIP = "192.168.56.1";
 	//private static String addressIP = "10.0.2.15";
 	private static String addressIP = "10.30.1.118";
-/*
-	public static void main(String[] args) throws Exception{
-		
-		//for(int i = 0; i < 5 ; i++) {
-			Socket socket = new Socket(addressIP, port);
-			//Socket socket = new Socket("192.168.1.6", 1978);
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-		    Scanner s = new Scanner(System.in);
-		    String a = s.nextLine();
-		    bufferedWriter.write("getLocalAddress: " + a + " adress: " + socket.getLocalAddress() +" \n");
-		   // bufferedWriter.write("getRemoteSocketAddress: " + a + " adress: " + socket.getRemoteSocketAddress() +" \n");
-		   // bufferedWriter.write("socket.getInetAddress: " + a + " adress: " + socket.getInetAddress() +" \n");
-		   // bufferedWriter.write("socket.getInetAddress().getLoopbackAddress() : " + a + " adress: " + socket.getInetAddress().getLoopbackAddress() +" \n");
-		   // bufferedWriter.write("socket.getLocalSocketAddress: " + a + " adress: " + socket.getLocalSocketAddress() +" \n\n");
-		    bufferedWriter.flush();
-		    BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		    String line = reader.readLine();
-		    while (line != null){
-		        System.out.println(line);
-		        System.out.flush();
-		        line = reader.readLine();
-			}
-		//}
-    }*/
+
 	public static void main(String[] args) throws Exception{
 
 		//for(int i = 0; i < 5 ; i++) {
 		while(true) {
 			Socket socket = new Socket("10.0.2.15", 12347);
-			System.out.println("Stworzyłem socket");
+			
+			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			String line = reader.readLine();
+			String message = line;
+			while (!line.equals("")) {
+				line = reader.readLine();
+				message += line;
+			}
+			System.out.println(message);
+
+			System.out.println();
 			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			Scanner s = new Scanner(System.in);
 			String a = s.nextLine();
-			bufferedWriter.write(a +" \n\n");
+			bufferedWriter.write(a +" \n");
 			bufferedWriter.flush();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			System.out.println("Czytam ");
-			String line = reader.readLine();
+
+
 			while (line != null){
-				System.out.println(line);
 				System.out.flush();
 				line = reader.readLine();
 			}
-
-
 		}
 	}
 
