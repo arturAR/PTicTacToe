@@ -10,7 +10,58 @@ import java.net.UnknownHostException;
 
 public class ServerSocketExample {
 	
+	
 	public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(12347);
+        int cnt = 0;
+       // while (true){
+        for(int i = 0; i < 3 ; i++) {
+        	cnt++;
+        	System.out.println(cnt);
+            Socket socket = serverSocket.accept();
+            System.out.println("Stworzylem socket");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            String line = bufferedReader.readLine();
+            System.out.println("TO JEST ODEBRANE: " + line);
+            while (!line.equals("")){
+                bufferedWriter.write("\nSever says: ");
+                bufferedWriter.write(line);
+                bufferedWriter.write("\n");
+                bufferedWriter.flush();
+                line = bufferedReader.readLine();
+            }
+            
+            bufferedWriter.write("Koniec polaczenia.");
+            bufferedWriter.flush();
+            socket.close();
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/*	public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(1978);
         int cnt = 0;
         //while (true){
@@ -47,6 +98,6 @@ public class ServerSocketExample {
             socket.close();
       //  }
     }
-	
+	*/
 }
 

@@ -43,7 +43,7 @@ public class GameCreator {
     	
         Player playerX = new Player(playerXName, Symbol.X);
         Player playerO = new Player(playerOName, Symbol.O);
-        
+        System.out.println("Tworze statystyki dla: " + playerOName + " i " + playerXName);
         return new GameStatistics(playerX, playerO);
 	}
 
