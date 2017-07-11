@@ -10,7 +10,7 @@ import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.view.Printer;
 
 
-public class SizeResolver<T> extends DataResolver<T> {
+public class SizeResolver extends DataResolver<Integer> {
 
 
 	public SizeResolver(UserInput userInput, Printer printer) {
@@ -41,7 +41,6 @@ public class SizeResolver<T> extends DataResolver<T> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	void checkData(Integer size, Object[] params) {
 		int smallestDim = -1 ;
 		for (Object param : params) {
@@ -54,18 +53,17 @@ public class SizeResolver<T> extends DataResolver<T> {
 				}
 			}
 		}
-		System.out.println(size);
 		if(size < 3) {
 			throw new DigitLessThanThreeException("Digit less than 3!");
 		} else if(size > smallestDim && params.length != 0) {
 			throw new WinningConditionTooBigException("Winning condition too big!");
 		} else {
-			value = (T) size;
+			value = size;
 		}
 	}
 
 	@Override
-	public T getValue() {
+	public Integer getValue() {
 		return value;
 	}
 }

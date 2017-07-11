@@ -34,35 +34,35 @@ public class GameCreator {
     
     private GameStatistics getGameStatistics() {
     	ioResolver.setPrinter(Type.SERVER);
-    	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerONickname");
-    	String playerOName = (String) strRes.getValue();
+    	StringResolver strRes = (StringResolver) ioResolver.resolveIO("string.playerONickname");
+    	String playerOName = strRes.getValue();
     	
     	ioResolver.setPrinter(Type.CLIENT);
-    	strRes = (StringResolver<?>) ioResolver.resolveIO("string.playerXNickname");
-    	String playerXName = (String) strRes.getValue();
+    	strRes = (StringResolver) ioResolver.resolveIO("string.playerXNickname");
+    	String playerXName = strRes.getValue();
     	
-        Player playerX = new Player(playerXName, Symbol.X);
-        Player playerO = new Player(playerOName, Symbol.O);
+        Player playerX = new Player(playerXName, Symbol.X, Type.SERVER);
+        Player playerO = new Player(playerOName, Symbol.O, Type.CLIENT);
         System.out.println("Tworze statystyki dla: " + playerOName + " i " + playerXName);
         return new GameStatistics(playerX, playerO);
 	}
 
 	private GameSettings getGameSettings() {
     	ioResolver.setPrinter(Type.SERVER);
-    	SizeResolver<?> res = (SizeResolver<?>) ioResolver.resolveIO("int.size.xDimension");
-    	Integer xDim = (Integer) res.getValue();
+    	SizeResolver res = (SizeResolver) ioResolver.resolveIO("int.size.xDimension");
+    	Integer xDim = res.getValue();
     	
     	ioResolver.setPrinter(Type.SERVER);
-    	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.yDimension");
-    	Integer yDim = (Integer) res.getValue();
+    	res = (SizeResolver) ioResolver.resolveIO("int.size.yDimension");
+    	Integer yDim = res.getValue();
     	
     	ioResolver.setPrinter(Type.SERVER);
-    	res = (SizeResolver<?>) ioResolver.resolveIO("int.size.winningCondition", xDim, yDim);
-    	Integer charSeriesDim = (Integer) res.getValue();
+    	res = (SizeResolver) ioResolver.resolveIO("int.size.winningCondition", xDim, yDim);
+    	Integer charSeriesDim = res.getValue();
     	
     	ioResolver.setPrinter(Type.SERVER);
-    	StringResolver<?> strRes = (StringResolver<?>) ioResolver.resolveIO("string.whoStarts");
-    	String whoStarts = (String) strRes.getValue();
+    	StringResolver strRes = (StringResolver) ioResolver.resolveIO("string.whoStarts");
+    	String whoStarts = strRes.getValue();
     	
 		return new GameSettings(whoStarts, charSeriesDim, xDim, yDim, 3);
 	}

@@ -4,7 +4,7 @@ import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.view.Printer;
 
-public class EmptyResolver<T> extends DataResolver<T> {
+public class EmptyResolver extends DataResolver<String> {
 
 
 	public EmptyResolver(UserInput userInput, Printer printer) {
@@ -21,7 +21,7 @@ public class EmptyResolver<T> extends DataResolver<T> {
 	}
 
 	@Override
-	protected T getValue() {
-		return null;
+	protected String getValue() {
+		return "";
 	}
 }

@@ -1,9 +1,24 @@
 package com.javaAcademy.tictactoe.model;
 
 public enum Symbol {
-	X("X"),
-	O("O"),
-	EMPTY(" ");
+	X("X") {
+		@Override
+		public Symbol getOppositeSymbol() {
+			return O;
+		}
+	},
+	O("O") {
+		@Override
+		public Symbol getOppositeSymbol() {
+			return X;
+		}
+	},
+	EMPTY(" ") {
+		@Override
+		public Symbol getOppositeSymbol() {
+			return EMPTY;
+		}
+	};
 	
 	private String symbol;
 	
@@ -15,10 +30,5 @@ public enum Symbol {
 		return symbol;
 	}
 	
-	public Symbol getOppositeSymbol(Symbol toSymbol) {
-		if(toSymbol.equals(X)) {
-			return O;
-		}
-		return X;
-	}
+	public abstract Symbol getOppositeSymbol();
 }

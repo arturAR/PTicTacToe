@@ -21,7 +21,7 @@ public class AscensionalTest {
 		gameArena.setSymbol(Symbol.O, new Point(2,4));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), true);
+		assertEquals(checker.win(Symbol.O), true);
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class AscensionalTest {
 		gameArena.setSymbol(Symbol.O, new Point(2,4));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), false);
+		assertEquals(checker.win(Symbol.O), false);
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class AscensionalTest {
 		gameArena.setSymbol(Symbol.O, new Point(2,4));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), true);
+		assertEquals(checker.win(Symbol.O), true);
 	}
 	
 	@Test
@@ -54,6 +54,6 @@ public class AscensionalTest {
 		gameArena.setSymbol(Symbol.O, new Point(2,4));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), false);
+		assertEquals(checker.win(Symbol.O), false);
 	}
 }

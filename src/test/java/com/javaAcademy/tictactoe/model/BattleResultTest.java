@@ -14,7 +14,7 @@ public class BattleResultTest {
 	@Test
 	public void isWinnerTest() {
 		Symbol symbol = Symbol.O;
-		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
+		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(), true);
 		
 		assertTrue(battleResult.isWinner());
 	}
@@ -22,7 +22,7 @@ public class BattleResultTest {
 	@Test
 	public void isDrawTest() {
 		Symbol symbol = Symbol.O;
-		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), false);
+		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(), false);
 		
 		assertFalse(battleResult.isWinner());
 	}
@@ -30,7 +30,7 @@ public class BattleResultTest {
 	@Test
 	public void oWinTest() {
 		Symbol symbol = Symbol.O;
-		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
+		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(), true);
 		
 		assertEquals(battleResult.getWinner(), symbol);
 	}
@@ -38,9 +38,9 @@ public class BattleResultTest {
 	@Test
 	public void xLoseTest() {
 		Symbol symbol = Symbol.O;
-		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
+		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(), true);
 		
-		assertEquals(battleResult.getLoser(), symbol.getOppositeSymbol(symbol));
+		assertEquals(battleResult.getLoser(), symbol.getOppositeSymbol());
 	}
 	
 	

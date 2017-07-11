@@ -42,13 +42,13 @@ public class IOResolver {
 	
 	public DataResolver<?> resolveIO(String key, Object ...params) {
 		if(key.startsWith("int.size.")) {
-			dataResolver = new SizeResolver<Integer>(userInput, printer);
+			dataResolver = new SizeResolver(userInput, printer);
 		} else if (key.startsWith("int.coord.")) {
-			dataResolver = new CoordResolver<Integer>(userInput, printer);
+			dataResolver = new CoordResolver(userInput, printer);
 		} else if (key.startsWith("string.")) {
-			dataResolver = new StringResolver<String>(userInput, printer);
+			dataResolver = new StringResolver(userInput, printer);
 		} else { //key.startsWith("empty.")
-			dataResolver = new EmptyResolver<String>(userInput, printer);
+			dataResolver = new EmptyResolver(userInput, printer);
 		}
 		dataResolver.resolveIO(key, params);
 		return dataResolver;

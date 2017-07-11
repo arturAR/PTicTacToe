@@ -10,6 +10,7 @@ import com.javaAcademy.tictactoe.model.GameStatistics;
 import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Point;
 import com.javaAcademy.tictactoe.model.Symbol;
+import com.javaAcademy.tictactoe.model.Type;
 
 
 public class Battle {
@@ -27,7 +28,7 @@ public class Battle {
 		this.statistics = statistics;
 		ioResolver = IOResolver.getIOResolverInstance();
 	}
-
+/*
 	public BattleResult doBattle() {
 		boolean someoneWin = false;
 		int cnt = 0;
@@ -49,7 +50,59 @@ public class Battle {
 		ioResolver.resolveIO("empty.battleNoWinner");
 		return new BattleResult(Symbol.O, Symbol.X, false);
 	}
-
+*/	
+	
+	public BattleResult doBattle() {
+		int cnt = 0;
+		ioResolver.getPrinter().printArena(gameArena);
+		Symbol symbol = settings.getWhoStarts();
+		Player player = null;
+		do{
+			player = getNextPlayer(cnt, symbol);
+			Point tempPoint = getPointIfEmpty(gameArena, player);
+			gameArena.setSymbol(symbol, tempPoint);
+			if(checker.win(symbol)) {
+				ioResolver.resolveIO("empty.battleWinner", symbol.toString());
+				return new BattleResult(symbol, symbol.getOppositeSymbol(), true);
+			}
+	    	cnt++;
+	    	ioResolver.getPrinter().printArena(gameArena); 
+		} while(cnt < gameArena.getAmountOfSymbols());
+		ioResolver.resolveIO("empty.battleNoWinner");
+		return new BattleResult(Symbol.O, Symbol.X, false);
+	}
+	
+	private Player getNextPlayer(int cnt, Symbol startingSymbol) {
+		if(cnt%2 == 0) {
+			return statistics.getPlayerBySymbol(startingSymbol);
+		} else {
+			return statistics.getPlayerBySymbol(startingSymbol.getOppositeSymbol());
+		}
+	}
+	
+	private Point getPointIfEmpty(GameArena arena, Player player) {
+		ioResolver.setPrinter(Type.BOTH);
+		ioResolver.resolveIO("empty.whoTurn.first", player.getSymbol());
+		
+		ioResolver.setPrinter(player.getClientOrServer());
+		CoordResolver algoRes = (CoordResolver) ioResolver.resolveIO("int.coord.xCoord", "X", arena.getXDimension());
+    	Integer xDim = algoRes.getValue();
+    	
+    	ioResolver.setPrinter(player.getClientOrServer());
+    	algoRes = (CoordResolver) ioResolver.resolveIO("int.coord.yCoord", "Y", arena.getYDimension());
+    	Integer yDim = algoRes.getValue();
+    	
+    	ioResolver.setPrinter(player.getClientOrServer());
+    	ioResolver.resolveIO("empty.chosenCoords", xDim + "|" + yDim);
+		
+		if((arena.getArena()[xDim][yDim]).equals(Symbol.EMPTY)) {
+			return new Point(xDim, yDim);
+		}
+		ioResolver.setPrinter(player.getClientOrServer());
+		ioResolver.resolveIO("empty.pointOccupied");
+		return getPointIfEmpty(arena, player);
+	}
+/*
 	private Symbol getNextSymbol(int cnt, Player player1, Player player2) {
 		Symbol symbol;
 		if(cnt%2 == 0) {
@@ -61,6 +114,7 @@ public class Battle {
 	}
 
 	private Point getPointIfEmpty(GameArena arena, Symbol symbol) {
+		ioResolver.setPrinter(Type.BOTH);
 		ioResolver.resolveIO("empty.whoTurn.first", symbol);
 		
 		CoordResolver algoRes = (CoordResolver) ioResolver.resolveIO("int.coord.xCoord", "X", arena.getXDimension());
@@ -77,5 +131,5 @@ public class Battle {
 		ioResolver.resolveIO("empty.pointOccupied");
 		return getPointIfEmpty(arena, symbol);
 	}
-	
+	*/
 }

@@ -52,12 +52,9 @@ public class Main {
     			port = Integer.parseInt(portID);
     			
     			System.out.println("Checking connection...");
-    			Socket socket = new Socket(addressIP, port);
-    		    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-    			bufferedWriter.write("Hello from client!");
-    			bufferedWriter.flush();
-    			System.out.println("Connected!");
-    			socket.close();
+    			
+    			writeClientData();
+    			
     			type = Type.CLIENT;
     		    printer = new NetworkPrinter(addressIP, port);
     			userInput = new NetworkUserInput(type);
@@ -69,16 +66,9 @@ public class Main {
     			System.out.println("Your IP: ");
     			showServerIPAddresses();
     			System.out.println("Wait for connection.");
-    			serverSocket = new ServerSocket(port);
-    			Socket socket = serverSocket.accept();
-    			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-    		    String line = reader.readLine();
-    		    System.out.println(line);
-    		    System.out.flush();
-    		    System.out.println("Connected!");
-    		   
     			
-    		    socket.close();
+    			readData();
+    		   
     		    type = Type.SERVER;
     		    printer = new NetworkPrinter(serverSocket, port);
     			userInput = new NetworkUserInput(serverSocket, type);
@@ -129,4 +119,30 @@ public class Main {
 	        System.out.printf("\n");
         }
     }
+    
+	private static void writeClientData() throws IOException {
+		Socket socket = new Socket(addressIP, port);
+		String a = s.nextLine();
+
+		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+		bufferedWriter.write(a +" \n");
+		bufferedWriter.flush();
+		socket.close();
+	}
+	
+	private static void readData() throws IOException {
+		serverSocket = new ServerSocket(port);
+		Socket socket = serverSocket.accept();
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String line = reader.readLine();
+		String msg = "";
+        while (line != null) {
+			msg += line;
+        	line = reader.readLine();
+		}
+        System.out.println("From second player: " + msg);
+        System.out.println("Connected!");
+		socket.close();
+	}
 }

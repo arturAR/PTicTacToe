@@ -14,39 +14,51 @@ import com.javaAcademy.tictactoe.helper.IOResolver;
 
 public class ClientGame implements Game {
 	
-	Scanner s = new Scanner(System.in);
+	private Scanner s = new Scanner(System.in);
 	IOResolver ioResolver = IOResolver.getIOResolverInstance();
 	private Socket socket;
+	private BufferedReader reader;
+	private BufferedWriter bufferedWriter;
+	private String addressIP; 
+	private int port;
 	
     public ClientGame(String addressIP, int port) throws UnknownHostException, IOException {
-		while(true) {
-			socket = new Socket(addressIP, port);
-			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String line = reader.readLine();
-			String message = line;
-			while (!line.equals("")) {
-				line = reader.readLine();
-				message += line;
-			}
-			System.out.println(message);
-
-			System.out.println();
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-			String a = s.nextLine();
-			bufferedWriter.write(a +" \n");
-			bufferedWriter.flush();
-
-
-			while (line != null){
-				System.out.flush();
-				line = reader.readLine();
-			}
+		this.addressIP = addressIP;
+		this.port = port;
+    	while(true) {
+			readDataFromServer();
+			writeDataToServer();
 		}
     }
    
     
-    public static ClientGame startGame(String addressIP, int port) throws UnknownHostException, IOException {
+    private void writeDataToServer() throws UnknownHostException, IOException {
+    	System.out.println("Pisze");
+    	String input = s.nextLine();
+    	socket = new Socket(addressIP, port);
+    	bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+		bufferedWriter.write(input +" \n");
+		bufferedWriter.flush();
+		socket.close();
+	}
+
+
+	private void readDataFromServer() throws UnknownHostException, IOException {
+		System.out.println("Czytam");
+    	socket = new Socket(addressIP, port);
+    	reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String line = reader.readLine();
+		String msg = "";
+        while (line != null) {
+			msg += line;
+        	line = reader.readLine();
+		}
+		socket.close();
+		System.out.println(msg);
+	}
+
+
+	public static ClientGame startGame(String addressIP, int port) throws UnknownHostException, IOException {
 		return new ClientGame(addressIP, port);
 	}
 }

@@ -19,7 +19,7 @@ public class CheckerAlgorithm {
 		this.winCondition = winCondition;
 	}
 
-	public boolean win(GameArena arena, Symbol checkedSymbol) {
+	public boolean win(Symbol checkedSymbol) {
 		check(checkedSymbol);
 		return isWinner;
 	}

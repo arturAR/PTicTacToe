@@ -21,7 +21,7 @@ public class ServerSocketExample {
 
         socket = serverSocket.accept(); 
         writeData("Podaj mi imie: ");
-        socket.close();
+        
         
         socket = serverSocket.accept(); 
         readData();

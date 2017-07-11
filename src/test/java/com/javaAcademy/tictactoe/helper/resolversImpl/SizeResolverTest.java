@@ -12,7 +12,7 @@ public class SizeResolverTest {
 	
 	@Test(expectedExceptions = WinningConditionTooBigException.class)
 	public void shouldThrowWinningConditionTooBigException() {
-		SizeResolver<?> dataResolver = new SizeResolver<Integer>(null, null);
+		SizeResolver dataResolver = new SizeResolver(null, null);
 		
 		Object[] arenaDimension = new Integer[2];
 		arenaDimension[0] = 5;
@@ -24,7 +24,7 @@ public class SizeResolverTest {
 	
 	@Test(expectedExceptions = DigitLessThanThreeException.class)
 	public void shouldThrowDigitLessThanThreeException() {
-		SizeResolver<?> dataResolver = new SizeResolver<Integer>(null, null);
+		SizeResolver dataResolver = new SizeResolver(null, null);
 		
 		Object[] arenaDimension = new Integer[2];
 		arenaDimension[0] = 5;
@@ -36,7 +36,7 @@ public class SizeResolverTest {
 	
 	@Test
 	public void testGetValue() {
-		SizeResolver<?> dataResolver = new SizeResolver<Integer>(null, null);
+		SizeResolver dataResolver = new SizeResolver(null, null);
 		
 		Object[] arenaDimension = new Integer[2];
 		arenaDimension[0] = 5;

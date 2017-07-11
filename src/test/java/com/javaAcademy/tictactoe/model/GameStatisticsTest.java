@@ -65,7 +65,7 @@ public class GameStatisticsTest {
         
         Symbol symbol = Symbol.X;
 		GameStatistics statistics = new GameStatistics(playerX, playerO);
-		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
+		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(), true);
 		statistics.updateStatistics(battleResult);
 		statistics.showStatistics();
 
@@ -79,7 +79,7 @@ public class GameStatisticsTest {
         
         Symbol symbol = Symbol.X;
 		GameStatistics statistics = new GameStatistics(playerX, playerO);
-		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), false);
+		BattleResult battleResult = new BattleResult(symbol, symbol.getOppositeSymbol(), false);
 		statistics.updateStatistics(battleResult);
 		statistics.showStatistics();
 
@@ -93,11 +93,11 @@ public class GameStatisticsTest {
         
         Symbol symbol = Symbol.X;
 		GameStatistics statistics = new GameStatistics(playerX, playerO);
-		BattleResult battle1 = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), false);
+		BattleResult battle1 = new BattleResult(symbol, symbol.getOppositeSymbol(), false);
 		statistics.updateStatistics(battle1);
-		BattleResult battle2 = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), true);
+		BattleResult battle2 = new BattleResult(symbol, symbol.getOppositeSymbol(), true);
 		statistics.updateStatistics(battle2);
-		BattleResult battle3 = new BattleResult(symbol, symbol.getOppositeSymbol(symbol), false);
+		BattleResult battle3 = new BattleResult(symbol, symbol.getOppositeSymbol(), false);
 		statistics.updateStatistics(battle3);
 		
 		statistics.summarizeGame();

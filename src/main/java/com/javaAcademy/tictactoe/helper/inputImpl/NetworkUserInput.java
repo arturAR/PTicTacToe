@@ -7,7 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-import com.javaAcademy.tictactoe.gameImpl.Server;
 import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.model.Type;
 
@@ -16,6 +15,7 @@ public class NetworkUserInput implements UserInput{
 	private Type type;
 	private Scanner scanner = new Scanner(System.in);
 	private ServerSocket serverSocket;
+	private Socket socket;
 	
 	public NetworkUserInput(ServerSocket serverSocket, Type type) {
 		this.serverSocket = serverSocket;
@@ -28,28 +28,28 @@ public class NetworkUserInput implements UserInput{
 
 	@Override
 	public String getUserInput() throws IOException {
-		System.out.println("UserInput typ: " + type);
 		if(type.equals(Type.CLIENT)) {
-			String message = "";
-			System.out.println("Tworzę socket");
-			Socket socket = serverSocket.accept();
-			System.out.println("Stworzyłem socket");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		    
-			System.out.println("Czytam linie:");
-			String line = reader.readLine();
-			System.out.println("MAM: " + line);
-			message = line;
-			while (!line.equals("")) {
-				message += line;
-				line = reader.readLine();
-			}
-			System.out.println("Klient podał: " + message);
-			socket.close();
-			return message;
+	        String msg = readData();
+			return msg;
 		} else {
 			return scanner.nextLine();
 		}
+	}
+	
+	private String readData() throws IOException {
+		System.out.println("Server czyta");
+		socket = serverSocket.accept(); 
+		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String line = reader.readLine();
+        System.out.println("Czytałem: " + line);
+		String msg = "";
+        while (line != null) {
+			msg += line;
+        	line = reader.readLine();
+		}
+        socket.close();
+        System.out.println("cała wiadomość: " + msg);
+        return msg;
 	}
 	
 	public void setType(Type type) {

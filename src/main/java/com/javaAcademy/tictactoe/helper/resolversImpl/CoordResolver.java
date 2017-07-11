@@ -8,7 +8,7 @@ import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.view.Printer;
 
-public class CoordResolver<T> extends DataResolver<T> {
+public class CoordResolver extends DataResolver<Integer> {
 	
 	public CoordResolver(UserInput userInput, Printer printer) {
 		super(userInput, printer);
@@ -41,17 +41,16 @@ public class CoordResolver<T> extends DataResolver<T> {
 		checkCoordIsOnBoard(dimension, coord);
 	}
 	
-	@SuppressWarnings("unchecked")
 	void checkCoordIsOnBoard(int dimension, Integer data) {
 		if(data < dimension && data > 0) {
-			value = (T) data;
+			value = data;
 		} else {
 			throw new IllegalMoveException("Coordinate out of board!");
 		}
 	}
 
 	@Override
-	public T getValue() {
+	public Integer getValue() {
 		return value;
 	}
 

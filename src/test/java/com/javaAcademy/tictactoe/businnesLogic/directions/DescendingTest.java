@@ -20,7 +20,7 @@ public class DescendingTest {
 		gameArena.setSymbol(Symbol.O, new Point(4,4));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), true);
+		assertEquals(checker.win(Symbol.O), true);
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class DescendingTest {
 		gameArena.setSymbol(Symbol.O, new Point(4,4));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), false);
+		assertEquals(checker.win(Symbol.O), false);
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class DescendingTest {
 		gameArena.setSymbol(Symbol.O, new Point(4,5));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), true);
+		assertEquals(checker.win(Symbol.O), true);
 	}
 	
 	@Test
@@ -53,6 +53,6 @@ public class DescendingTest {
 		gameArena.setSymbol(Symbol.O, new Point(4,4));
 		
 		CheckerAlgorithm checker = new CheckerAlgorithm(gameArena, 3);
-		assertEquals(checker.win(gameArena, Symbol.O), false);
+		assertEquals(checker.win(Symbol.O), false);
 	}
 }

@@ -6,23 +6,23 @@ import com.javaAcademy.tictactoe.helper.DataResolver;
 import com.javaAcademy.tictactoe.helper.UserInput;
 import com.javaAcademy.tictactoe.view.Printer;
 
-public class StringResolver<T> extends DataResolver<T> {
+public class StringResolver extends DataResolver<String> {
 
 
 	public StringResolver(UserInput userInput, Printer printer) {
 		super(userInput, printer);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void resolveIO(String key, Object ...params) {
 		try {
 			printer.printMessage(key);
+			System.out.println("Teraz będę pobierał dane od ziomeczka");
 			String data = userInput.getUserInput();
-			System.out.println("Dostałem: " + data);
+			
 			checkIfCancelGame(data); 
 			
-			value = (T) data;
+			value = data;
 		} catch (IOException e) {
 			printer.printMessage("empty.ioException");
 			resolveIO(key, params);
@@ -30,7 +30,7 @@ public class StringResolver<T> extends DataResolver<T> {
 	}
 
 	@Override
-	public T getValue() {
+	public String getValue() {
 		return value;
 	}
 

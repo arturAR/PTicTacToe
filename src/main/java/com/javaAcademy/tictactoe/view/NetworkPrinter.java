@@ -1,13 +1,10 @@
 package com.javaAcademy.tictactoe.view;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import com.javaAcademy.tictactoe.helper.IOResolver;
 import com.javaAcademy.tictactoe.model.GameArena;
@@ -22,26 +19,15 @@ public class NetworkPrinter implements Printer {
 	private Socket socket;
 	private ServerSocket server;
 	private BufferedWriter bufferedWriter;
-	private boolean isServer;
 	
 	public NetworkPrinter(String addressIP, int port) {
 		this.addressIP = addressIP;
 		this.port = port;
-		this.isServer = false;
 	}
 	
 	public NetworkPrinter(ServerSocket server, int port) {
 		this.server = server;
 		this.port = port;
-		this.isServer = true;
-	}
-	
-	private void setSocket() throws UnknownHostException, IOException {
-		if(isServer) {
-			socket = server.accept();
-		} else {
-			socket = new Socket(addressIP, port);
-		}
 	}
 	
 	@Override
@@ -49,6 +35,7 @@ public class NetworkPrinter implements Printer {
 		try {
 			String message = IOResolver.getIOResolverInstance().getMsgByKey(key);
 			showMessage(message);
+			System.out.println("Już po wysyłaniu wiadomości");
 		} catch (IOException e) {
 			try {
 				socket.close();
@@ -80,20 +67,20 @@ public class NetworkPrinter implements Printer {
 		if(type.equals(Type.SERVER)) {
 			ConsolePrinter.printMessageSOutLn(message);
 		} else if (type.equals(Type.CLIENT)){
-			setSocket();
-			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            bufferedWriter.write(message);
-			bufferedWriter.flush();
-			socket.close();
+			writeData(message);
 		} else { //BOTH
 			ConsolePrinter.printMessageSOutLn(message);
-			setSocket();
-			bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-			bufferedWriter.write(message);
-			bufferedWriter.flush();
-			socket.close();
+			writeData(message);
 		}
 	}	
+	
+	void writeData(String message) throws IOException {
+		socket = server.accept(); 
+        bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        bufferedWriter.write(message +" \n");
+		bufferedWriter.flush();
+		socket.close();
+	}
 	
 	public void setType(Type type) {
 		this.type = type;
@@ -104,12 +91,13 @@ public class NetworkPrinter implements Printer {
 		Symbol[][] playArena = arena.getArena();
 		String message = "";
 		for(int y = 1; y < arena.getYDimension(); y++) {
-			message += "\n";
+			message += "\r\n";
 			for(int x = 1; x < arena.getXDimension(); x++) {
 				message += "  |" +  printPoint(playArena[x][y]);
 			}
 		}
 		try {
+			type = Type.BOTH;
 			showMessage(message);
 		} catch (IOException e) {
 			System.out.println("Connection refused!");
