@@ -64,6 +64,9 @@ public class GameCreator {
     	StringResolver strRes = (StringResolver) ioResolver.resolveIO("string.whoStarts");
     	String whoStarts = strRes.getValue();
     	
+    	ioResolver.setPrinter(Type.CLIENT);
+		ioResolver.resolveIO("empty.tableSize", xDim, yDim);
+    	
 		return new GameSettings(whoStarts, charSeriesDim, xDim, yDim, 3);
 	}
 	

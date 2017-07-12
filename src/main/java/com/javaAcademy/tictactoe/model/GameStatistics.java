@@ -31,12 +31,14 @@ public class GameStatistics {
 	}
 
 	public void showStatistics() {
+		ioResolver.setPrinter(Type.BOTH);
 		ioResolver.resolveIO("empty.showStatistic.head");
 		ioResolver.resolveIO("empty.showStatistic.player", players.get(Symbol.O).getNick(), players.get(Symbol.O).getAmountOfPoints());
 		ioResolver.resolveIO("empty.showStatistic.player", players.get(Symbol.X).getNick(), players.get(Symbol.X).getAmountOfPoints());
 	}
 
 	public void summarizeGame() {
+		ioResolver.setPrinter(Type.BOTH);
 		ioResolver.resolveIO("empty.matchResult.head");
 		int pointsPlayerX = players.get(Symbol.X).getAmountOfPoints();
 		int pointsPlayerO = players.get(Symbol.O).getAmountOfPoints();

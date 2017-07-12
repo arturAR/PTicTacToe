@@ -37,18 +37,15 @@ public class NetworkUserInput implements UserInput{
 	}
 	
 	private String readData() throws IOException {
-		System.out.println("Server czyta");
 		socket = serverSocket.accept(); 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String line = reader.readLine();
-        System.out.println("Czytałem: " + line);
 		String msg = "";
         while (line != null) {
 			msg += line;
         	line = reader.readLine();
 		}
         socket.close();
-        System.out.println("cała wiadomość: " + msg);
         return msg;
 	}
 	

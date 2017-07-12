@@ -17,7 +17,6 @@ public class StringResolver extends DataResolver<String> {
 	public void resolveIO(String key, Object ...params) {
 		try {
 			printer.printMessage(key);
-			System.out.println("Teraz będę pobierał dane od ziomeczka");
 			String data = userInput.getUserInput();
 			
 			checkIfCancelGame(data); 

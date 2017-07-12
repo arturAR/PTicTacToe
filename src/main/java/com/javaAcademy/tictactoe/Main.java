@@ -51,7 +51,7 @@ public class Main {
     			String portID = s.nextLine();
     			port = Integer.parseInt(portID);
     			
-    			System.out.println("Checking connection...");
+    			System.out.println("Send message to server:");
     			
     			writeClientData();
     			
@@ -87,7 +87,8 @@ public class Main {
     	ioResolver.resolveIO("empty.chosenLanguage");
     	
     	if(type.equals(Type.CLIENT)) {
-			ClientGame.startGame(addressIP, port);
+    		ClientGame clientGame = ClientGame.startGame(addressIP, port);
+			clientGame.startClientGame();
 		} else {
 			GameCreator app = new GameCreator();
 			app.startGame();

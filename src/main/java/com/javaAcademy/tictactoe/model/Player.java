@@ -35,7 +35,7 @@ public class Player {
 		return points;
 	}
 
-	public Type getClientOrServer() {
+	public Type getPlayerType() {
 		return clientServer;
 	}
 }

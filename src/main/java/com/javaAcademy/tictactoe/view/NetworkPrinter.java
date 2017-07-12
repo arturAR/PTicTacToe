@@ -14,8 +14,8 @@ import com.javaAcademy.tictactoe.model.Type;
 public class NetworkPrinter implements Printer {
 
 	private Type type;
-	private int port;
-	private String addressIP;
+	int port;
+	String addressIP;
 	private Socket socket;
 	private ServerSocket server;
 	private BufferedWriter bufferedWriter;
@@ -33,9 +33,7 @@ public class NetworkPrinter implements Printer {
 	@Override
 	public void printMessage(String key) {
 		try {
-			String message = IOResolver.getIOResolverInstance().getMsgByKey(key);
-			showMessage(message);
-			System.out.println("Już po wysyłaniu wiadomości");
+			showMessage(key);
 		} catch (IOException e) {
 			try {
 				socket.close();
@@ -48,11 +46,7 @@ public class NetworkPrinter implements Printer {
 	@Override
 	public void showMessageWithParam(String key, Object[] params) {
 		try {
-			String message = IOResolver.getIOResolverInstance().getMsgByKey(key);
-			for(Object param: params) {
-				message += " " + param;
-			}
-			showMessage(message);
+			showMessage(key, params);
 		} catch (IOException e) {
 			try {
 				socket.close();
@@ -62,22 +56,32 @@ public class NetworkPrinter implements Printer {
 		} 
 	}
 	
-	private void showMessage(String message) throws IOException {
-		System.out.println("Printer jest: " + type);
+	private void showMessage(String key, Object ...params) throws IOException {
 		if(type.equals(Type.SERVER)) {
+			String message = IOResolver.getIOResolverInstance().getMsgByKey(key);
+			for(Object param: params) {
+				message += " " + param;
+			}
 			ConsolePrinter.printMessageSOutLn(message);
 		} else if (type.equals(Type.CLIENT)){
-			writeData(message);
+			writeData(key, params);
 		} else { //BOTH
+			String message = IOResolver.getIOResolverInstance().getMsgByKey(key);
+			for(Object param: params) {
+				message += " " + param;
+			}
 			ConsolePrinter.printMessageSOutLn(message);
-			writeData(message);
+			writeData(key, params);
 		}
 	}	
 	
-	void writeData(String message) throws IOException {
+	void writeData(String message, Object ...params) throws IOException {
 		socket = server.accept(); 
         bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         bufferedWriter.write(message +" \n");
+        for(Object param: params) {
+        	bufferedWriter.write(param +" \n");
+		}
 		bufferedWriter.flush();
 		socket.close();
 	}
@@ -93,12 +97,13 @@ public class NetworkPrinter implements Printer {
 		for(int y = 1; y < arena.getYDimension(); y++) {
 			message += "\r\n";
 			for(int x = 1; x < arena.getXDimension(); x++) {
-				message += "  |" +  printPoint(playArena[x][y]);
+				message += " | " +  printPoint(playArena[x][y]);
 			}
 		}
 		try {
 			type = Type.BOTH;
-			showMessage(message);
+			ConsolePrinter.printMessageSOutLn(message);
+			writeData(message);
 		} catch (IOException e) {
 			System.out.println("Connection refused!");
 		}
