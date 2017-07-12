@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.helper;
+package com.javaAcademy.tictactoe.io;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.helper.inputImpl;
+package com.javaAcademy.tictactoe.io.inputImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-import com.javaAcademy.tictactoe.helper.UserInput;
+import com.javaAcademy.tictactoe.io.UserInput;
 import com.javaAcademy.tictactoe.model.Type;
 
 public class NetworkUserInput implements UserInput{

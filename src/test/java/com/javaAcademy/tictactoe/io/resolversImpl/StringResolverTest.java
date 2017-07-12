@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.helper.resolversImpl;
+package com.javaAcademy.tictactoe.io.resolversImpl;
 
 import java.io.ByteArrayInputStream;
 import java.util.Locale;
@@ -6,9 +6,9 @@ import java.util.Locale;
 import org.testng.annotations.*;
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
-import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
-import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
+import com.javaAcademy.tictactoe.io.IOResolver;
+import com.javaAcademy.tictactoe.io.inputImpl.ConsoleUserInput;
+import com.javaAcademy.tictactoe.io.resolversImpl.StringResolver;
 
 public class StringResolverTest {
 	

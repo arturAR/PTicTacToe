@@ -3,7 +3,7 @@ package com.javaAcademy.tictactoe.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.javaAcademy.tictactoe.helper.IOResolver;
+import com.javaAcademy.tictactoe.io.IOResolver;
 
 public class GameStatistics {
 	

@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.view;
+package com.javaAcademy.tictactoe.io.outputImpl;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -6,7 +6,8 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.javaAcademy.tictactoe.helper.IOResolver;
+import com.javaAcademy.tictactoe.io.IOResolver;
+import com.javaAcademy.tictactoe.io.Printer;
 import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.Symbol;
 import com.javaAcademy.tictactoe.model.Type;
@@ -44,7 +45,7 @@ public class NetworkPrinter implements Printer {
 	}
 
 	@Override
-	public void showMessageWithParam(String key, Object[] params) {
+	public void printMessageWithParam(String key, Object[] params) {
 		try {
 			showMessage(key, params);
 		} catch (IOException e) {

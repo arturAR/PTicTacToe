@@ -42,11 +42,10 @@ When board is full and there is no winner - there is a draw.
 	- poprawa wydajności sprawdzenia wygranej(możliwa zmiana implementacji areny do mapy)
 	
 
-	+/- dwie drogi programu sieciowego: klient i serwer
-	- przesyłanie informacji z serwera na klient i odczyt ich na kliencie
+	+ podział menu!
 	
 
 # For review & questions & doubts
 
-Menu wymaga refaktoryzacji. Dodatkowo nie działa przesyłanie komunikatów z serwera na klienta. 
+Menu wymaga refaktoryzacji. Wersja sieciowa już działa!
 Wersja sieciowa na branchu networkTicTacToe, wersja bez sieci na masterze.

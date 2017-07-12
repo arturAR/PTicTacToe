@@ -8,15 +8,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.UserInput;
-import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
+import com.javaAcademy.tictactoe.io.IOResolver;
+import com.javaAcademy.tictactoe.io.Printer;
+import com.javaAcademy.tictactoe.io.UserInput;
+import com.javaAcademy.tictactoe.io.inputImpl.ConsoleUserInput;
+import com.javaAcademy.tictactoe.io.outputImpl.ConsolePrinter;
 import com.javaAcademy.tictactoe.model.BattleResult;
 import com.javaAcademy.tictactoe.model.GameStatistics;
 import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Symbol;
-import com.javaAcademy.tictactoe.view.ConsolePrinter;
-import com.javaAcademy.tictactoe.view.Printer;
 
 public class GameStatisticsTest {
 	

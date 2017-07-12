@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
 import com.javaAcademy.tictactoe.gameImpl.ServerGame;
-import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
+import com.javaAcademy.tictactoe.io.IOResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.SizeResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.StringResolver;
 import com.javaAcademy.tictactoe.model.Player;
 import com.javaAcademy.tictactoe.model.Symbol;
 import com.javaAcademy.tictactoe.model.Type;

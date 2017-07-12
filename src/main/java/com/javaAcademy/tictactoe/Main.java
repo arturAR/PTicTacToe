@@ -16,14 +16,14 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import com.javaAcademy.tictactoe.gameImpl.ClientGame;
-import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.UserInput;
-import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
-import com.javaAcademy.tictactoe.helper.inputImpl.NetworkUserInput;
+import com.javaAcademy.tictactoe.io.IOResolver;
+import com.javaAcademy.tictactoe.io.Printer;
+import com.javaAcademy.tictactoe.io.UserInput;
+import com.javaAcademy.tictactoe.io.inputImpl.ConsoleUserInput;
+import com.javaAcademy.tictactoe.io.inputImpl.NetworkUserInput;
+import com.javaAcademy.tictactoe.io.outputImpl.ConsolePrinter;
+import com.javaAcademy.tictactoe.io.outputImpl.NetworkPrinter;
 import com.javaAcademy.tictactoe.model.Type;
-import com.javaAcademy.tictactoe.view.ConsolePrinter;
-import com.javaAcademy.tictactoe.view.NetworkPrinter;
-import com.javaAcademy.tictactoe.view.Printer;
 
 public class Main {
 	
@@ -123,10 +123,10 @@ public class Main {
     
 	private static void writeClientData() throws IOException {
 		Socket socket = new Socket(addressIP, port);
-		String a = s.nextLine();
+		String clientData = s.nextLine();
 
 		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-		bufferedWriter.write(a +" \n");
+		bufferedWriter.write(clientData +" \n");
 		bufferedWriter.flush();
 		socket.close();
 	}

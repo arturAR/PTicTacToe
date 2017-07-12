@@ -1,12 +1,13 @@
-package com.javaAcademy.tictactoe.helper;
+package com.javaAcademy.tictactoe.io;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
-import com.javaAcademy.tictactoe.view.ConsolePrinter;
-import com.javaAcademy.tictactoe.view.Printer;
+import com.javaAcademy.tictactoe.io.IOResolver;
+import com.javaAcademy.tictactoe.io.Printer;
+import com.javaAcademy.tictactoe.io.UserInput;
+import com.javaAcademy.tictactoe.io.inputImpl.ConsoleUserInput;
+import com.javaAcademy.tictactoe.io.outputImpl.ConsolePrinter;
 
 import static org.testng.Assert.*;
 

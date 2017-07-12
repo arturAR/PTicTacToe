@@ -1,11 +1,11 @@
-package com.javaAcademy.tictactoe.helper;
+package com.javaAcademy.tictactoe.io;
 
 import java.io.ByteArrayInputStream;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.*;
 
-import com.javaAcademy.tictactoe.helper.inputImpl.ConsoleUserInput;
+import com.javaAcademy.tictactoe.io.inputImpl.ConsoleUserInput;
 
 public class IOTest {
 

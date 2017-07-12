@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import com.javaAcademy.tictactoe.Game;
-import com.javaAcademy.tictactoe.helper.IOResolver;
+import com.javaAcademy.tictactoe.io.IOResolver;
 
 public class ClientGame implements Game {
 	

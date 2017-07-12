@@ -1,8 +1,8 @@
-package com.javaAcademy.tictactoe.helper.resolversImpl;
+package com.javaAcademy.tictactoe.io.resolversImpl;
 
-import com.javaAcademy.tictactoe.helper.DataResolver;
-import com.javaAcademy.tictactoe.helper.UserInput;
-import com.javaAcademy.tictactoe.view.Printer;
+import com.javaAcademy.tictactoe.io.DataResolver;
+import com.javaAcademy.tictactoe.io.Printer;
+import com.javaAcademy.tictactoe.io.UserInput;
 
 public class EmptyResolver extends DataResolver<String> {
 
@@ -16,7 +16,7 @@ public class EmptyResolver extends DataResolver<String> {
 		if(params.length == 0) {
 			printer.printMessage(key);
 		} else {
-			printer.showMessageWithParam(key, params);
+			printer.printMessageWithParam(key, params);
 		}
 	}
 

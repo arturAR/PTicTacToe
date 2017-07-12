@@ -1,10 +1,10 @@
-package com.javaAcademy.tictactoe.helper.resolversImpl;
+package com.javaAcademy.tictactoe.io.resolversImpl;
 
 import java.io.IOException;
 
-import com.javaAcademy.tictactoe.helper.DataResolver;
-import com.javaAcademy.tictactoe.helper.UserInput;
-import com.javaAcademy.tictactoe.view.Printer;
+import com.javaAcademy.tictactoe.io.DataResolver;
+import com.javaAcademy.tictactoe.io.Printer;
+import com.javaAcademy.tictactoe.io.UserInput;
 
 public class StringResolver extends DataResolver<String> {
 

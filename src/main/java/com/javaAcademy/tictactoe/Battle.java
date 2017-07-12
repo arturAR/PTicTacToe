@@ -1,8 +1,8 @@
 package com.javaAcademy.tictactoe;
 
 import com.javaAcademy.tictactoe.businessLogic.CheckerAlgorithm;
-import com.javaAcademy.tictactoe.helper.IOResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
+import com.javaAcademy.tictactoe.io.IOResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.CoordResolver;
 import com.javaAcademy.tictactoe.model.BattleResult;
 import com.javaAcademy.tictactoe.model.GameArena;
 import com.javaAcademy.tictactoe.model.GameSettings;

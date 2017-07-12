@@ -1,9 +1,8 @@
-package com.javaAcademy.tictactoe.helper;
+package com.javaAcademy.tictactoe.io;
 
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
 import com.javaAcademy.tictactoe.model.Type;
-import com.javaAcademy.tictactoe.view.Printer;
 
 public abstract class DataResolver <T>{
 	

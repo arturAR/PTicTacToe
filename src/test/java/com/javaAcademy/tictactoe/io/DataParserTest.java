@@ -1,9 +1,9 @@
-package com.javaAcademy.tictactoe.helper;
+package com.javaAcademy.tictactoe.io;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.*;
 
-import com.javaAcademy.tictactoe.helper.DataParser;
+import com.javaAcademy.tictactoe.io.DataParser;
 
 public class DataParserTest {
 

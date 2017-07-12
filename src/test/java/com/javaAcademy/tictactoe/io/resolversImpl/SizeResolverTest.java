@@ -1,4 +1,4 @@
-package com.javaAcademy.tictactoe.helper.resolversImpl;
+package com.javaAcademy.tictactoe.io.resolversImpl;
 
 import static org.testng.Assert.assertEquals;
 
@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 
 import com.javaAcademy.tictactoe.exceptions.DigitLessThanThreeException;
 import com.javaAcademy.tictactoe.exceptions.WinningConditionTooBigException;
+import com.javaAcademy.tictactoe.io.resolversImpl.SizeResolver;
 
 public class SizeResolverTest {
 

@@ -1,13 +1,13 @@
-package com.javaAcademy.tictactoe.helper.resolversImpl;
+package com.javaAcademy.tictactoe.io.resolversImpl;
 
 import java.io.IOException;
 
 import com.javaAcademy.tictactoe.exceptions.DigitLessThanThreeException;
 import com.javaAcademy.tictactoe.exceptions.WinningConditionTooBigException;
-import com.javaAcademy.tictactoe.helper.DataParser;
-import com.javaAcademy.tictactoe.helper.DataResolver;
-import com.javaAcademy.tictactoe.helper.UserInput;
-import com.javaAcademy.tictactoe.view.Printer;
+import com.javaAcademy.tictactoe.io.DataParser;
+import com.javaAcademy.tictactoe.io.DataResolver;
+import com.javaAcademy.tictactoe.io.Printer;
+import com.javaAcademy.tictactoe.io.UserInput;
 
 
 public class SizeResolver extends DataResolver<Integer> {

@@ -1,10 +1,11 @@
-package com.javaAcademy.tictactoe.helper;
+package com.javaAcademy.tictactoe.io;
 
 import org.testng.annotations.*;
 
 import com.javaAcademy.tictactoe.exceptions.CancelGameException;
-import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
+import com.javaAcademy.tictactoe.io.DataResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.CoordResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.StringResolver;
 
 public class DataResolverTest {
 

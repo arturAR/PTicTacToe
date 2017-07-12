@@ -2,8 +2,9 @@ package com.javaAcademy.tictactoe.view;
 
 import static org.testng.Assert.assertEquals;
 
-import com.javaAcademy.tictactoe.view.ConsolePrinter;
 import org.testng.annotations.Test;
+
+import com.javaAcademy.tictactoe.io.outputImpl.ConsolePrinter;
 
 public class MessagePrinterTest {
 

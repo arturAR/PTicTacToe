@@ -1,14 +1,13 @@
-package com.javaAcademy.tictactoe.helper;
+package com.javaAcademy.tictactoe.io;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.javaAcademy.tictactoe.helper.resolversImpl.CoordResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.EmptyResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.SizeResolver;
-import com.javaAcademy.tictactoe.helper.resolversImpl.StringResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.CoordResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.EmptyResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.SizeResolver;
+import com.javaAcademy.tictactoe.io.resolversImpl.StringResolver;
 import com.javaAcademy.tictactoe.model.Type;
-import com.javaAcademy.tictactoe.view.Printer;
 
 public class IOResolver {
 	
